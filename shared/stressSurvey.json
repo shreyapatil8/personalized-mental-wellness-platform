@@ -1,0 +1,128 @@
+{
+  "version": "kaggle-stress-type-v1",
+  "target": "Which type of stress do you primarily experience?",
+  "labels": [
+    "distress",
+    "eustress"
+  ],
+  "questions": [
+    {
+      "id": "survey_01",
+      "column": "Have you recently experienced stress in your life?",
+      "label": "Have you recently experienced stress in your life?"
+    },
+    {
+      "id": "survey_02",
+      "column": "Have you noticed a rapid heartbeat or palpitations?",
+      "label": "Have you noticed a rapid heartbeat or palpitations?"
+    },
+    {
+      "id": "survey_03",
+      "column": "Have you been dealing with anxiety or tension recently?",
+      "label": "Have you been dealing with anxiety or tension recently?"
+    },
+    {
+      "id": "survey_04",
+      "column": "Do you face any sleep problems or difficulties falling asleep?",
+      "label": "Do you face any sleep problems or difficulties falling asleep?"
+    },
+    {
+      "id": "survey_05",
+      "column": "Have you been getting headaches more often than usual?",
+      "label": "Have you been getting headaches more often than usual?"
+    },
+    {
+      "id": "survey_06",
+      "column": "Do you get irritated easily?",
+      "label": "Do you get irritated easily?"
+    },
+    {
+      "id": "survey_07",
+      "column": "Do you have trouble concentrating on your academic tasks?",
+      "label": "Do you have trouble concentrating on your academic tasks?"
+    },
+    {
+      "id": "survey_08",
+      "column": "Have you been feeling sadness or low mood?",
+      "label": "Have you been feeling sadness or low mood?"
+    },
+    {
+      "id": "survey_09",
+      "column": "Have you been experiencing any illness or health issues?",
+      "label": "Have you been experiencing any illness or health issues?"
+    },
+    {
+      "id": "survey_10",
+      "column": "Do you often feel lonely or isolated?",
+      "label": "Do you often feel lonely or isolated?"
+    },
+    {
+      "id": "survey_11",
+      "column": "Do you feel overwhelmed with your academic workload?",
+      "label": "Do you feel overwhelmed with your academic workload?"
+    },
+    {
+      "id": "survey_12",
+      "column": "Are you in competition with your peers, and does it affect you?",
+      "label": "Are you in competition with your peers, and does it affect you?"
+    },
+    {
+      "id": "survey_13",
+      "column": "Do you find that your relationship often causes you stress?",
+      "label": "Do you find that your relationship often causes you stress?"
+    },
+    {
+      "id": "survey_14",
+      "column": "Are you facing any difficulties with your professors or instructors?",
+      "label": "Are you facing any difficulties with your professors or instructors?"
+    },
+    {
+      "id": "survey_15",
+      "column": "Is your working environment unpleasant or stressful?",
+      "label": "Is your working environment unpleasant or stressful?"
+    },
+    {
+      "id": "survey_16",
+      "column": "Do you struggle to find time for relaxation and leisure activities?",
+      "label": "Do you struggle to find time for relaxation and leisure activities?"
+    },
+    {
+      "id": "survey_17",
+      "column": "Is your hostel or home environment causing you difficulties?",
+      "label": "Is your hostel or home environment causing you difficulties?"
+    },
+    {
+      "id": "survey_18",
+      "column": "Do you lack confidence in your academic performance?",
+      "label": "Do you lack confidence in your academic performance?"
+    },
+    {
+      "id": "survey_19",
+      "column": "Do you lack confidence in your choice of academic subjects?",
+      "label": "Do you lack confidence in your choice of academic subjects?"
+    },
+    {
+      "id": "survey_20",
+      "column": "Academic and extracurricular activities conflicting for you?",
+      "label": "Academic and extracurricular activities conflicting for you?"
+    },
+    {
+      "id": "survey_21",
+      "column": "Do you attend classes regularly?",
+      "label": "Do you attend classes regularly?"
+    },
+    {
+      "id": "survey_22",
+      "column": "Have you gained/lost weight?",
+      "label": "Have you gained/lost weight?"
+    }
+  ],
+  "scale": [
+    "Not at all",
+    "Slightly",
+    "Moderately",
+    "Very",
+    "Extremely"
+  ],
+  "notice": "Research survey using the source dataset's 1–5 responses. Estimates self-reported stress type, not clinical risk. Intermediate response anchors are an application convention; the dataset only documents its endpoints. Ambiguous attendance and weight items are a study limitation."
+}

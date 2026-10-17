@@ -1,0 +1,38 @@
+node_modules/
+dist/
+build/
+.env
+.env.*
+!.env.example
+coverage/
+*.log
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+.pnpm-store/
+.test-cache/
+.venv/
+ml/data/
+docs/synopsis-render/
+docs/research-synopsis-source.docx
+# Temporary test outputs and generated files
+tmp/
+.chart-data-*/
+
+# Local logs and generated reports
+*.log
+coverage/
+
+# Generated documents and presentations
+output/
+
+# Research evaluation data and generated results
+research/results/
+research/context-cases.json
+
+# Private or unpublished synopsis material
+docs/research-synopsis-source.docx
+docs/research-synopsis-corrected.md
+docs/research-progress.md
+docs/local-counsellor-briefing.md

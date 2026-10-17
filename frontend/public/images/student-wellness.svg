@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="560" viewBox="0 0 640 560" fill="none">
+  <rect width="640" height="560" fill="#E6F1ED"/>
+  <path d="M98 395V221a222 222 0 0 1 444 0v174" fill="#F9F6EA"/>
+  <circle cx="451" cy="133" r="46" fill="#EDCF91"/>
+  <path d="M99 344c107-96 173 58 281-10 90-56 139-25 180 13v103H99Z" fill="#CEDDD0"/>
+  <path d="M72 391c129-68 237 60 355 0 54-28 94-22 148-4v103H72Z" fill="#B3CEC0"/>
+  <ellipse cx="326" cy="487" rx="251" ry="25" fill="#A9C6B5"/>
+  <!-- Campus greenery -->
+  <path d="M82 447V217m0 155L47 328m35-21 37-45" stroke="#527E67" stroke-width="7" stroke-linecap="round"/>
+  <path d="M82 281c-41-15-49-56-26-81 29 9 42 40 26 81Zm2 56c5-44 32-68 61-57-1 32-22 54-61 57ZM69 370c-42 0-62-26-52-51 30-2 52 17 52 51Z" fill="#719B78"/>
+  <path d="M551 452V285m0 86-29-36m29 72 33-35" stroke="#527E67" stroke-width="6" stroke-linecap="round"/>
+  <path d="M551 335c-33-17-37-49-16-69 24 10 32 38 16 69Zm3 60c2-34 26-56 50-47 0 26-17 44-50 47Zm-17-26c-34-1-49-24-40-43 23 0 40 16 40 43Z" fill="#88AA83"/>
+  <path d="M521 449h60l-9 40h-42Z" fill="#D49576"/>
+  <!-- Garden bench -->
+  <rect x="136" y="318" width="365" height="18" rx="7" fill="#B48765"/>
+  <rect x="133" y="345" width="371" height="18" rx="7" fill="#B48765"/>
+  <rect x="124" y="391" width="387" height="17" rx="6" fill="#946F56"/>
+  <path d="m149 408-9 72m348-72 9 72" stroke="#46645B" stroke-width="13" stroke-linecap="round"/>
+  <!-- Student with journal -->
+  <path d="M207 365c-25 36-15 72 3 115h30l-9-70 51-18-13-32" fill="#374C58"/>
+  <path d="m260 371 31 37 10 66h-27l-21-54-38-19" fill="#456271"/>
+  <path d="M207 473h32l8 18h-46c-6-1-6-9 6-18Zm66-6 29 2 18 19c4 4 1 9-5 9h-42Z" fill="#FAF8F0"/>
+  <path d="M202 268c-29 18-34 55-26 107 29 14 67 16 100-3l-7-78c-4-21-20-30-37-30Z" fill="#4F8E88"/>
+  <path d="M213 250v24c8 12 23 13 31-1l-5-30" fill="#B97653"/>
+  <path d="M199 211c0-31 58-43 64-8l-5 41c-5 25-43 27-54 2Z" fill="#C88A66"/>
+  <path d="M197 230c-17-33-3-58 24-60 31-7 51 10 47 38-24 1-34-7-39-20-1 24-14 27-23 25l-1 20Z" fill="#343D3B"/>
+  <path d="M250 228h1m-25 0h1" stroke="#343D3B" stroke-width="4" stroke-linecap="round"/>
+  <path d="M235 244c5 3 10 2 13-2" stroke="#874C38" stroke-width="3" stroke-linecap="round"/>
+  <path d="m189 303-2 38 45 14m30-52 12 35-28 20" stroke="#C88A66" stroke-width="18" stroke-linecap="round"/>
+  <path d="m216 339 32 4 20-8 9 38-26 8-32-7Z" fill="#FAF8F0"/>
+  <path d="m248 344 3 36" stroke="#D1BD93" stroke-width="3"/>
+  <!-- Student holding a warm drink -->
+  <path d="m375 366-31 39-6 72h29l12-55 31-23m3-33 21 45-8 66h-29l-3-62-22-21" fill="#345A53"/>
+  <path d="M338 470h29v23h-45c-8-3-4-11 16-23Zm59 0h29l14 15c4 6 1 9-5 9h-38Z" fill="#FAF8F0"/>
+  <path d="M371 268c-22 14-32 53-31 106 35 16 65 14 98 1l-10-84c-8-22-30-29-57-23Z" fill="#D9AB73"/>
+  <path d="M377 246v27c6 13 24 13 30 0l-4-29" fill="#945F45"/>
+  <path d="M364 211c0-35 53-44 63-9l-5 39c-5 25-40 26-51 5Z" fill="#AB7555"/>
+  <path d="M364 232c-14-12-13-33-3-45-4-16 15-29 28-21 12-13 31-6 32 6 19-1 27 17 16 30 4 13-1 24-13 29l-2-24c-17 5-28-6-33-13-3 14-11 20-21 18Z" fill="#303B36"/>
+  <path d="M382 227h1m25 0h1" stroke="#303B36" stroke-width="4" stroke-linecap="round"/>
+  <path d="M384 244c5 4 10 4 14 0" stroke="#744832" stroke-width="3" stroke-linecap="round"/>
+  <path d="m353 305-11 28 30 14m45-42 5 26-35 16" stroke="#AB7555" stroke-width="18" stroke-linecap="round"/>
+  <path d="M367 321h28v27a8 8 0 0 1-8 8h-12a8 8 0 0 1-8-8Z" fill="#FAF8F0"/>
+  <path d="M395 326h4a9 9 0 0 1 0 18h-4" stroke="#FAF8F0" stroke-width="5"/>
+  <path d="M377 308c-8-10 7-13 0-23m11 23c-7-8 6-12 1-19" stroke="#F9F6EA" stroke-width="3" stroke-linecap="round"/>
+  <!-- A quiet shared moment -->
+  <path d="M295 141c-17-18-39 3-22 20l22 21 22-21c17-17-5-38-22-20Z" fill="#CC8B77"/>
+  <path d="m159 137 6 10m175-33 10-7m-54-11v-10" stroke="#88AA83" stroke-width="4" stroke-linecap="round"/>
+</svg>

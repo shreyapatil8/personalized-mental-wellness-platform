@@ -1,0 +1,26 @@
+{
+  "name": "personalized-mental-wellness-platform",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Personalized Mental Wellness Platform for College Students",
+  "scripts": {
+    "dev": "pnpm --parallel --filter backend --filter frontend dev",
+    "dev:backend": "pnpm --filter backend dev",
+    "dev:frontend": "pnpm --filter frontend dev",
+    "lint": "pnpm --filter frontend lint",
+    "setup:local": "node scripts/setup-local.mjs",
+    "test": "pnpm --filter backend test && pnpm --filter frontend test",
+    "test:browser": "pnpm build && node scripts/test-browser.mjs",
+    "build": "pnpm --filter frontend build",
+    "research:context": "node backend/src/scripts/evaluateContext.js",
+    "seed:demo": "pnpm --filter backend seed:demo",
+    "start": "pnpm --filter backend start"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "engines": {
+    "node": ">=20"
+  }
+}

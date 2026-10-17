@@ -1,0 +1,276 @@
+========================================
+PROJECT PRESENTATION GUIDE
+========================================
+Inspected: 29 September 2026. No application code or database records changed.
+
+1. PROJECT IN SIMPLE WORDS
+
+Wellspace helps college students reflect on their daily well-being.
+Students can record moods, write journals, and see their wellness history.
+They can use a wellness assistant and request counselling appointments.
+The purpose is personal reflection and support, not medical diagnosis.
+
+2. HOW TO RUN THE PROJECT
+
+These instructions use Windows PowerShell.
+
+Step 1: Open PowerShell in the project folder:
+cd "D:\Personalized_Mental_Wellness_Platform\Personalized_Mental_Wellness_Platform"
+On another computer, use the folder where you copied the project.
+
+Step 2: Check prerequisites.
+You need Node.js 20+, pnpm, MongoDB, and Python 3.13 for the stress model.
+This computer already has Node 22, Python, and a running MongoDB service.
+
+Step 3: For a fresh setup, run:
+pnpm install --store-dir .pnpm-store
+pnpm setup:local
+Skip this step when using the already prepared, running project.
+
+Step 4: Check backend/.env. The current database address is:
+MONGODB_URI=mongodb://127.0.0.1:27017/wellness_research
+MongoDB must be running. On this computer, its Windows service is MongoDB.
+Use Windows Services to start it if stopped.
+The backend connects to MongoDB before it starts accepting requests.
+Copying the project folder does NOT copy the MongoDB accounts or records.
+On another computer, install/start MongoDB and configure its address first.
+
+Step 5: On a new computer, prepare Python for the saved model:
+python -m venv ml/.venv
+& ml/.venv/Scripts/python.exe -m pip install -r ml/requirements-lock.txt
+Use Python 3.13. Do not rely on a virtual environment copied from another PC.
+Skip this step on this prepared computer. Keep ml/models with the project.
+No separate Python server or model retraining is needed.
+
+Step 6: Start both application parts from the project folder:
+pnpm dev
+Keep the terminal open. To run them separately instead:
+Terminal 1: pnpm dev:backend
+Terminal 2: pnpm dev:frontend
+Both terminals must start in the project folder.
+At inspection, both were already running. Do not start duplicate servers.
+
+Step 7: Open http://localhost:5173
+Backend check: http://localhost:5000/api/health should show status "ok".
+Use localhost consistently. Keep the frontend on port 5173.
+pnpm start starts ONLY the backend; it does not start the website.
+
+Step 8: Register a student or use an existing account below, then log in.
+Rehearse the complete flow on the presentation computer today.
+
+3. LOGIN / CREDENTIALS
+
+These accounts EXIST and are active in this computer's database:
+Student:    patilshreya3110@gmail.com
+Counsellor: shreyu885@gmail.com
+Admin:      sdpcse1988@gmail.com
+Passwords: NOT AVAILABLE. Login with these accounts was not attempted.
+Get the passwords from the owner before presenting. Passwords are stored
+as hashes, not readable text. There is no forgot-password flow.
+
+Alternative: Register your own student using full name, email, password,
+and confirm password. Use at least 8 password characters. Registration
+takes you to Login; enter the same email and password there.
+New counsellors need admin activation before they can log in.
+For a new database, an administrator can be created with:
+pnpm --filter backend admin:create
+It prompts for name, a new email, and a password of at least 12 characters.
+
+OPTIONAL SAMPLE DATA - not loaded in the current database:
+The seed script defines these accounts, all with password Password123!:
+student.demo@wellspace.local    | student
+counsellor.demo@wellspace.local | counsellor
+admin.demo@wellspace.local      | admin
+These credentials WILL NOT work in the current database: accounts absent.
+Only for a separate disposable database, after changing MONGODB_URI:
+$env:ALLOW_DEMO_SEED = "true"
+pnpm seed:demo
+This replaces demo-account records. Do not run it against important data.
+It adds 7 mood logs, 2 journals, a WHO-5 score, sample chat/context and an
+appointment. It does not create a stress-model result. Samples are fictional.
+
+4. MODULES / FEATURES TO CHECK
+
+Status key: WORKING means supported by tests, recorded successful requests,
+or today's checks, as stated. It does not mean every button was retested.
+PARTIALLY WORKING means a limitation or an unverified part remains.
+NOT WORKING means unavailable with the inspected configuration.
+No signed-in browser walkthrough was repeated during this inspection.
+
+Module 1: Registration, login and home
+Open: Website -> Register or Login.
+Show: Four registration fields; login; greeting and five main actions.
+Status: WORKING - authentication tests and saved browser checks passed.
+
+Module 2: Initial Wellness Assessment
+Open: After new student login, or Menu -> Complete / update assessment.
+Show: Start Assessment or Skip for Now. Answer 14 required choices;
+question 15 is optional. Use Next/Back, Submit, then Continue to Dashboard.
+Reopen to review/update. A completed student goes directly home on login.
+Status: WORKING - save, validation and student ownership tested.
+
+Module 3: Mood Check-in
+Open: Home -> Mood Check-in.
+Show: Choose mood, stress and sleep; Save mood; view the saved entry.
+Status: WORKING - saving through the API and displaying history tested.
+The UI also has Delete; that button was not retested today.
+
+Module 4: Journal
+Open: Home -> Journal.
+Show: Reflection form, optional title/tags, and a chosen sentiment label.
+Save journal and Delete are implemented; there is no Edit button.
+Status: PARTIALLY WORKING - navigation verified; UI save/delete Not verified.
+
+Module 5: WHO-5 check-in
+Open: Mood Check-in -> Assessment tab.
+Show: Five questions, Save assessment, and the score out of 100.
+Status: WORKING - scoring tests and saved API/browser checks passed.
+This is separate from the 15-question initial assessment.
+
+Module 6: Wellness Overview
+Open: Home -> Wellness Overview.
+Show: Recent values. Expand Mood, stress & wellness history for charts;
+expand Suggested next steps for simple suggestions. Refresh after changes.
+Status: WORKING - empty/populated views, charts and navigation tested.
+
+Module 7: Stress check-in/model
+Open: Wellness Overview -> Understand your stress ->
+Complete / update stress check-in.
+Show: Answer all 22 questions; Save and update summary; read the result.
+Status: WORKING - saved browser/API tests and today's real model run passed.
+The model returns Eustress or Distress. It cannot identify "No Stress".
+
+Module 8: AI Wellness Assistant
+Open: Home -> Start a conversation.
+Show: Send "I feel stressed about exams" and view the reply/history.
+Status: PARTIALLY WORKING - scripted replies and saved history tested.
+A real local model response must be demonstrated before claiming live AI.
+The background context engine selects relevant saved information; it has
+no student menu item. Its selection logic and chat integration were tested.
+
+Module 9: Wellness Profile
+Open: Menu -> Wellness Profile.
+Show: Saved initial assessment, goals, academic details and sharing consent.
+Status: PARTIALLY WORKING - successful save recorded; error display incomplete.
+Saving requires a 4-digit roll number, 8/10-digit URN, department and year.
+If entered, age must be 16-30. Look for "Profile saved."
+
+Module 10: Counselling and counsellor workspace
+Open: Home -> Counselling; counsellor login -> Counselling.
+Show: Select counsellor, future date/time and concern; Book appointment.
+Choose a time ending in :00 or :30. Students can cancel active requests.
+Counsellor can approve, then save private notes and student-visible progress.
+Status: PARTIALLY WORKING - booking, conflicts, consent and notes API-tested.
+Full live two-account walkthrough Not verified. AI briefings and PDFs need
+missing services. No built-in video consultation or availability calendar.
+
+Module 11: Admin and feedback
+Open: Admin login -> Admin; student/counsellor -> Menu/Research feedback.
+Show: Admin user search, activation and aggregate counts; feedback ratings.
+Status: WORKING - admin requests recorded; permissions/feedback API-tested.
+Feedback submission from the browser Not verified. Use only demo accounts
+when demonstrating account activation/deactivation.
+
+5. WHAT IS WORKING
+
+- Today: frontend HTTP 200, backend health HTTP 200, database readable.
+- Today: required appointment conflict indexes found in MongoDB.
+- Today: real saved stress model ran successfully without saving test data.
+- Today: frontend lint and all 3 Python contract tests passed.
+- Existing evidence: 54 backend tests passed; latest dashboard browser log
+  passed desktop/mobile, navigation, overview, model and scripted chat checks.
+- Stored API history also shows successful registration/login, profile and
+  initial-assessment saves, admin listing and account activation.
+
+Evidence: .test-cache/initial-assessment-tests.txt and
+.test-cache/simple-dashboard-browser.log. These are previous isolated tests,
+not proof that another computer or external provider is ready.
+
+6. INCOMPLETE / NOT WORKING
+
+Feature: Local AI replies and Generate AI briefing.
+The assistant calls Ollama locally with qwen3:1.7b by default. No API key
+or paid AI service is required. Install Ollama and pull the model before the demo.
+Until a real model reply is generated in the app, describe local inference as unverified.
+If Ollama is unavailable, show its setup error; do not label a scripted reply as AI.
+
+Feature: Shared documents.
+Problem: All Cloudinary settings are empty. Upload/download is NOT WORKING
+with this configuration. External storage has not been verified.
+During presentation: Explain the optional PDF interface; do not upload.
+
+Feature: Existing data and charts.
+Problem: There are no mood logs, journals, WHO-5 scores, stress surveys,
+predictions, appointments or feedback records in the inspected database.
+One student has completed the initial assessment; six chat messages exist.
+During presentation: Empty charts are expected. Use your own clearly labelled
+demo inputs during rehearsal. Never describe sample data as real findings.
+
+Feature: Initial assessment personalization.
+Problem: Its answers are saved in the profile but are not yet used by the
+stress model, context engine or counsellor briefing. Drafts are not autosaved.
+During presentation: Show save/review. Explain that ML uses the separate
+22-question survey. Finish submission before leaving the assessment.
+
+Feature: Profile errors and tracking edits.
+Problem: Profile load/save and mood/journal deletion lack proper error
+handling in the UI. Mood/journal update APIs exist but have no Edit buttons.
+During presentation: Use valid profile details; wait for success. Do not
+promise editing entries or assume a silent failed save succeeded.
+
+Feature: Stress results.
+Problem: Requires Python/model files and a complete survey no older than
+30 days. Missing/broken model returns 503. Only two stress types are supported;
+the training data has very few Distress examples. Clinical validity unproven.
+During presentation: Allow time for the result. If unavailable, explain the
+survey instead. Never call the probability a diagnosis or health certainty.
+
+Feature: Account access and transfer to another PC.
+Problem: Existing passwords are unknown; no password-reset feature. Local
+database data does not travel with the source folder. Provider calls were
+not tested live. Older docs mention an Atlas problem; today's LOCAL DB works.
+During presentation: Arrange credentials/rehearse first. Do not promise
+staff-role demonstrations without working accounts on that computer.
+
+7. WHAT TO DEMONSTRATE
+
+Rehearse first. Use only steps that succeed on the presentation computer.
+1. Open the landing page; explain Register and Login.
+2. Log in as a student. Show Start/Skip if the assessment is incomplete.
+3. Show the simple dashboard and its five actions.
+4. Save a mood check-in. Complete WHO-5 and show its score.
+5. Open Wellness Overview; show the saved values/history.
+6. Send an exam-stress message; openly identify the scripted reply.
+7. Reopen the initial assessment/profile to show saved answers.
+8. If time permits, run the tested 22-question stress check-in.
+9. Explain cloud-feature limitations. Journal save, staff workflows and
+   feedback are optional only after a successful rehearsal of those actions.
+
+8. IF SOMETHING FAILS DURING PRESENTATION
+
+"The database or backend is not reachable right now; saved features need
+both services running. I will continue with the project explanation."
+"This setup uses scripted assistant replies because live AI is not configured."
+"PDF sharing and generated briefings need external services that are not
+configured on this machine."
+"This research model is unavailable right now. It normally estimates two
+self-reported stress types; it does not diagnose a medical condition."
+
+9. IMPORTANT THINGS TO REMEMBER
+
+- frontend: React/Vite/Tailwind screens. backend: Node.js/Express APIs.
+- MongoDB stores accounts, assessments, tracking, chat and appointments.
+- ml: Python/scikit-learn; the saved model is logistic regression.
+- shared: question definitions. docs/research: explanations and test results.
+- Roles: student, counsellor, admin. Counsellors need activation.
+- Remember three different forms: initial 15, WHO-5 5, stress survey 22.
+- Journal sentiment is selected by the user, not automatically detected.
+- Counsellor summaries need profile consent AND appointment sharing.
+- This is a research prototype, not a diagnosis, therapy or emergency service.
+- Keep terminals open. Sign out through Menu when changing accounts.
+
+10. VERY SHORT PRESENTATION FLOW
+
+START -> LOGIN -> START/SKIP ASSESSMENT -> DASHBOARD -> MOOD CHECK-IN
+-> WELLNESS OVERVIEW -> ASSISTANT (SCRIPTED MODE) -> EXPLAIN LIMITATIONS
+-> CONCLUSION: "One place for student reflection and access to support."

@@ -1,0 +1,9 @@
+packages:
+  - "backend"
+  - "frontend"
+
+onlyBuiltDependencies:
+  - esbuild
+allowBuilds:
+  esbuild: true
+  mongodb-memory-server: false

@@ -1,0 +1,20 @@
+{
+  "version": "initial-wellness-v1",
+  "questions": [
+    { "id": "overallWellbeing", "label": "How would you describe your overall well-being currently?", "options": ["Very good", "Good", "Average", "Poor", "Very poor"] },
+    { "id": "stressFrequency", "label": "How often have you felt stressed or under pressure recently?", "options": ["Never", "Rarely", "Sometimes", "Often", "Very often"] },
+    { "id": "academicPressure", "label": "How much academic pressure are you currently experiencing?", "options": ["Very low", "Low", "Moderate", "High", "Very high"] },
+    { "id": "academicSatisfaction", "label": "How satisfied are you with your academic performance?", "options": ["Very satisfied", "Satisfied", "Neutral", "Dissatisfied", "Very dissatisfied"] },
+    { "id": "concentration", "label": "How well are you able to concentrate on your studies or daily tasks?", "options": ["Very well", "Well", "Sometimes difficult", "Often difficult", "Very difficult"] },
+    { "id": "sleepQuality", "label": "How would you describe your sleep recently?", "options": ["Very good", "Good", "Average", "Poor", "Very poor"] },
+    { "id": "sleepHours", "label": "Approximately how many hours do you sleep per night?", "options": ["Less than 5", "5–6", "6–7", "7–8", "More than 8"] },
+    { "id": "anxietyFrequency", "label": "How often have you felt anxious, nervous, or tense recently?", "options": ["Never", "Rarely", "Sometimes", "Often", "Very often"] },
+    { "id": "lowMoodFrequency", "label": "How often have you experienced low mood or sadness recently?", "options": ["Never", "Rarely", "Sometimes", "Often", "Very often"] },
+    { "id": "peerConnection", "label": "How connected do you currently feel to your friends or peers?", "options": ["Very connected", "Connected", "Neutral", "Somewhat isolated", "Very isolated"] },
+    { "id": "supportSatisfaction", "label": "How satisfied are you with the support you receive from family or people close to you?", "options": ["Very satisfied", "Satisfied", "Neutral", "Dissatisfied", "Very dissatisfied"] },
+    { "id": "timeManagement", "label": "How difficult is it for you to manage your time between studies, personal life, and other responsibilities?", "options": ["Not difficult", "Slightly difficult", "Moderately difficult", "Very difficult", "Extremely difficult"] },
+    { "id": "primaryConcern", "label": "What is currently affecting your well-being the most?", "options": ["Academic/study pressure", "Relationships/friendships", "Family", "Financial concerns", "Career/future concerns", "Personal concerns", "Health/lifestyle", "Other"] },
+    { "id": "preferredSupport", "label": "What type of support would you find most helpful right now?", "options": ["Someone to talk to", "Help managing stress", "Help with academic pressure", "Help with relationships/personal concerns", "Help improving daily habits", "Professional counselling", "I'm not sure yet"] },
+    { "id": "additionalNotes", "label": "Is there anything else you would like your counsellor or wellness assistant to know about you?", "optional": true, "maxLength": 2000 }
+  ]
+}
