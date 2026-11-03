@@ -57,6 +57,9 @@ export default function LoginPage() {
           type="password"
           value={form.password}
         />
+        <div className="-mt-2 flex justify-end">
+          <Link className="min-h-11 inline-flex items-center text-sm font-semibold text-sea hover:underline" to="/forgot-password">Forgot Password?</Link>
+        </div>
         {error && <p role="alert" className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
         <button className="btn-primary w-full" disabled={saving} type="submit">
           {saving ? "Logging in..." : "Login"}

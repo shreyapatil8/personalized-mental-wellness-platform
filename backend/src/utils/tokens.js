@@ -4,7 +4,8 @@ export function createAuthToken(user) {
   return jwt.sign(
     {
       sub: user._id.toString(),
-      role: user.role
+      role: user.role,
+      tokenVersion: user.tokenVersion || 0
     },
     process.env.JWT_SECRET,
     { expiresIn: process.env.JWT_EXPIRES_IN || "7d" }

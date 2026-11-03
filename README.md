@@ -35,6 +35,17 @@ Students self-register; counsellors require admin activation. Public admin regis
 pnpm --filter backend admin:create
 ```
 
+### Password reset email
+
+Password reset uses Gmail SMTP over implicit TLS on port 465 through Nodemailer. Add the five SMTP settings from `backend/.env.example` to the existing `backend/.env`; preserve all existing values. Set `SMTP_USER` and `SMTP_FROM` to the sender's Gmail address and `SMTP_PASSWORD` to a Gmail App Password. The sender address in `SMTP_FROM` must match `SMTP_USER`. Use a personal Gmail account if available; Gmail requires 2-Step Verification before it allows App Passwords, and some managed or protected accounts cannot create them. See Google's [App Password instructions](https://support.google.com/accounts/answer/185833) and [SMTP connection settings](https://support.google.com/mail/answer/7104828). Set `CLIENT_ORIGIN` to the frontend URL that users open so emailed reset links return to the right site. Keep all SMTP values only in `backend/.env`; never put them in frontend environment variables or commit them.
+
+1. Turn on 2-Step Verification for the sender's eligible Google Account.
+2. Open the Google Account [App Passwords page](https://myaccount.google.com/apppasswords), create an app password for this backend, and copy it when Google displays it. The backend trims spaces from the copied value.
+3. Add `SMTP_HOST=smtp.gmail.com`, `SMTP_PORT=465`, `SMTP_USER`, `SMTP_PASSWORD`, and `SMTP_FROM` to the existing `backend/.env`. Set both address fields to the sender's Gmail address and put the App Password in `SMTP_PASSWORD`; do not use the normal Google password.
+4. Restart the backend and submit a reset request for an account you control. The app reports SMTP setup or delivery failures instead of claiming mail was sent.
+
+If SMTP settings are missing, requests return a setup error and no email is claimed as sent. Delivery failures are also reported. Reset tokens expire after 30 minutes, are stored only as SHA-256 hashes, and can be used once. Completing a reset invalidates all earlier sign-in JWTs for that user.
+
 ### Local AI (no API key, cloud service, or paid inference)
 
 The student assistant and optional counsellor briefing use Ollama's local HTTP API. In PowerShell, install Ollama and download the small Qwen3 1.7B instruction model:

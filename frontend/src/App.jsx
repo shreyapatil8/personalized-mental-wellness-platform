@@ -17,12 +17,16 @@ import FeedbackPage from "./pages/FeedbackPage.jsx";
 import LandingPage from "./pages/LandingPage.jsx";
 import InitialWellnessAssessmentPage from "./pages/InitialWellnessAssessmentPage.jsx";
 import WellnessOverviewPage from "./pages/WellnessOverviewPage.jsx";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage.jsx";
+import ResetPasswordPage from "./pages/ResetPasswordPage.jsx";
 import { useAuth } from "./context/useAuth.js";
 
 export default function App() {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+      <Route path="/reset-password" element={<ResetPasswordPage />} />
       <Route path="/wellness-assessment" element={<ProtectedRoute><InitialWellnessAssessmentPage /></ProtectedRoute>} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/register/counsellor" element={<RegisterPage key="counsellor" role="counsellor" />} />

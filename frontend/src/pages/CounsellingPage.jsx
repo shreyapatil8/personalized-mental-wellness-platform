@@ -6,6 +6,7 @@ import {
   Clock3,
   Loader2,
   RefreshCw,
+  Search,
   ShieldCheck,
   Stethoscope,
   UserRound,
@@ -370,17 +371,40 @@ function PageHeader({ description, title }) {
 }
 
 function AppointmentList({ appointments, loading, onCancel, onSelect, onSharing, role, selectedId }) {
+  const [searchName, setSearchName] = useState("");
+  const query = searchName.trim().toLowerCase();
+  const filteredAppointments = appointments.filter((appointment) => {
+    const person = role === "student" ? appointment.counsellor : appointment.student;
+    return (person?.name || "Counselling user").toLowerCase().includes(query);
+  });
+  const searchControl = <div>
+    <label className="block text-sm font-medium" htmlFor="counselling-appointment-search">
+      Search {role === "student" ? "counsellors" : "students"} by name
+    </label>
+    <div className="relative mt-1">
+      <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={17} aria-hidden="true" />
+      <input id="counselling-appointment-search" className="input pl-10" type="search" value={searchName}
+        onChange={(event) => setSearchName(event.target.value)}
+        placeholder={`Search ${role === "student" ? "counsellor" : "student"} name`} autoComplete="off" />
+    </div>
+  </div>;
+
   if (loading) {
     return <LoadingLine text="Loading appointments" />;
   }
 
   if (!appointments.length) {
-    return <p className="rounded-lg bg-slate-50 p-4 text-sm text-slate-500">No counselling sessions scheduled yet.</p>;
+    return <div className="space-y-3">{searchControl}<p className="rounded-lg bg-slate-50 p-4 text-sm text-slate-500">No counselling sessions scheduled yet.</p></div>;
+  }
+
+  if (!filteredAppointments.length) {
+    return <div className="space-y-3">{searchControl}<p className="rounded-lg bg-slate-50 p-4 text-sm text-slate-500" role="status">No appointments match “{searchName.trim()}”.</p></div>;
   }
 
   return (
     <div className="space-y-3">
-      {appointments.map((appointment) => {
+      {searchControl}
+      {filteredAppointments.map((appointment) => {
         const isSelected = selectedId === appointment._id;
         const person = role === "student" ? appointment.counsellor : appointment.student;
         return (

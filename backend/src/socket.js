@@ -23,9 +23,9 @@ export function configureSocketServer(httpServer) {
       }
 
       const payload = jwt.verify(token, process.env.JWT_SECRET);
-      const user = await User.findById(payload.sub);
+      const user = await User.findById(payload.sub).select("+tokenVersion");
 
-      if (!user || !user.isActive || !["student", "counsellor"].includes(user.role)) {
+      if (!user || !user.isActive || (payload.tokenVersion ?? 0) !== (user.tokenVersion || 0) || !["student", "counsellor"].includes(user.role)) {
         return next(new Error("Only active student and counsellor accounts can connect."));
       }
 
@@ -40,9 +40,9 @@ export function configureSocketServer(httpServer) {
     configureCounsellingSockets(io, socket);
     socket.on("chat:send", async (payload, callback) => {
       try {
-        jwt.verify(socket.handshake.auth.token, process.env.JWT_SECRET);
-        const currentUser = await User.findById(socket.user._id);
-        if (!currentUser?.isActive || currentUser.role !== "student") throw new Error("This chat session is no longer available.");
+        const payloadToken = jwt.verify(socket.handshake.auth.token, process.env.JWT_SECRET);
+        const currentUser = await User.findById(socket.user._id).select("+tokenVersion");
+        if (!currentUser?.isActive || currentUser.role !== "student" || (payloadToken.tokenVersion ?? 0) !== (currentUser.tokenVersion || 0)) throw new Error("This chat session is no longer available.");
         const message = String(payload?.message || "").trim();
         if (!message || message.length > 1200) {
           throw new Error("Message must be between 1 and 1200 characters.");

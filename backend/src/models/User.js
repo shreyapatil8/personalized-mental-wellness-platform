@@ -37,6 +37,8 @@ const userSchema = new mongoose.Schema(
     lastLoginAt: {
       type: Date
     },
+    // Incremented on password reset so all previously issued JWT sessions expire.
+    tokenVersion: { type: Number, default: 0, select: false },
     // Admin review metadata only. Existing isActive authorization remains authoritative.
     // No default/backfill: historical accounts have no recorded review decision.
     counsellorReviewStatus: { type: String, enum: ["approved", "rejected"], select: false }

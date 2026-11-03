@@ -190,12 +190,28 @@ try {
     await evaluate(`document.querySelector('nav[aria-label="Saved counselling conversations"] a[href="${route(id)}"]').click()`);
     await until(`location.pathname === ${JSON.stringify(route(id))}`);
   }
-  await login(student); await navigate(route(current)); await sees("Connected"); await sees("Session history");
+  await login(student); await navigate("/counselling"); await sees("My appointments");
+  await setInput("#counselling-appointment-search", "hIsToRy cOu");
+  assert.equal(await evaluate("document.querySelectorAll('.appointment-card').length"), 2,
+    "student counselling page searches counsellor names case-insensitively by partial name");
+  await setInput("#counselling-appointment-search", "no such counsellor"); await sees("No appointments match");
+  assert.equal(await evaluate("document.querySelectorAll('.appointment-card').length"), 0);
+  await setInput("#counselling-appointment-search", "");
+  await navigate(route(current)); await sees("Connected"); await sees("Session history");
   await until(`document.querySelectorAll('nav[aria-label="Saved counselling conversations"] a').length === 2`);
   assert.ok(!await evaluate(`!!document.querySelector('nav a[href="${route(other)}"]')`));
+  await setInput("#session-history-search", "hIsToRy cOu");
+  await until(`document.querySelectorAll('nav[aria-label="Saved counselling conversations"] a').length === 2`);
+  assert.equal(await evaluate(`document.querySelectorAll('nav[aria-label="Saved counselling conversations"] a').length`), 2,
+    "case-insensitive partial counsellor name matches both saved conversations");
+  await setInput("#session-history-search", "no such counsellor"); await sees("No saved conversations match");
+  assert.equal(await evaluate(`document.querySelectorAll('nav[aria-label="Saved counselling conversations"] a').length`), 0);
+  await setInput("#session-history-search", "");
   await setInput("#counselling-message", "New saved student message"); await click("Send message"); await sees("New saved student message");
-  await choose(older); await sees("Earlier saved student message"); await sees("Earlier saved counsellor reply"); await sees("This session is complete.");
+  await setInput("#session-history-search", "HISTORY COUN"); await choose(older);
+  await sees("Earlier saved student message"); await sees("Earlier saved counsellor reply"); await sees("This session is complete.");
   assert.ok(!await evaluate("!!document.querySelector('#counselling-message')"));
+  await setInput("#session-history-search", "");
   assert.doesNotMatch(await evaluate("document.querySelector('[role=log]').innerText"), /New saved student message/);
   await choose(current); await sees("New saved student message");
   await navigate(route(current)); await sees("New saved student message");
@@ -203,7 +219,26 @@ try {
   assert.doesNotMatch(await evaluate("document.body.innerText"), /PRIVATE_COUNSELLOR_NOTE|Wellness overview|PRIVATE_ASSESSMENT_TEXT/);
   pass("student sidebar selects completed/approved sessions, preserves per-appointment history after refresh/relogin and excludes another student's session");
 
-  await logout(); await login(counsellor); await navigate(route(current)); await sees("Connected");
+  await logout(); await login(counsellor); await navigate("/counselling"); await sees("Requests");
+  await setInput("#counselling-appointment-search", "hIsToRy sT");
+  await until("document.querySelectorAll('.appointment-card').length === 2");
+  assert.equal(await evaluate("document.querySelectorAll('.appointment-card').length"), 2,
+    "counsellor counselling page searches student names case-insensitively by partial name");
+  await setInput("#counselling-appointment-search", "OTHER STUD");
+  await until("document.querySelectorAll('.appointment-card').length === 1");
+  assert.equal(await evaluate("document.querySelectorAll('.appointment-card').length"), 1,
+    "counsellor can narrow requests to an assigned student");
+  await setInput("#counselling-appointment-search", "no such student"); await sees("No appointments match");
+  await navigate(route(current)); await sees("Connected");
+  await setInput("#session-history-search", "hIsToRy sT");
+  await until(`document.querySelectorAll('nav[aria-label="Saved counselling conversations"] a').length === 2`);
+  assert.equal(await evaluate(`document.querySelectorAll('nav[aria-label="Saved counselling conversations"] a').length`), 2,
+    "case-insensitive partial student name matches that student’s two sessions");
+  await setInput("#session-history-search", "OTHER STUD");
+  await until(`document.querySelectorAll('nav[aria-label="Saved counselling conversations"] a').length === 1`);
+  assert.equal(await evaluate(`document.querySelectorAll('nav[aria-label="Saved counselling conversations"] a').length`), 1,
+    "counsellor can narrow history to another assigned student by a partial name");
+  await setInput("#session-history-search", "");
   await sees("New saved student message"); await sees("Wellness overview"); await sees("AVERAGE MOOD"); await sees("Initial assessment");
   assert.ok(!(await evaluate("document.body.innerText")).includes("Poor"), "assessment responses start collapsed");
   await sees("AI-assisted pre-session briefing");

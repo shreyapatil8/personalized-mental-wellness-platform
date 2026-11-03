@@ -7,8 +7,8 @@ const roomName = (id) => `counselling:${id}`;
 
 async function socketUser(socket) {
   const payload = jwt.verify(socket.handshake.auth.token, process.env.JWT_SECRET);
-  const user = await User.findById(payload.sub);
-  if (!user?.isActive) throw new Error("Your session has expired. Please sign in again.");
+  const user = await User.findById(payload.sub).select("+tokenVersion");
+  if (!user?.isActive || (payload.tokenVersion ?? 0) !== (user.tokenVersion || 0)) throw new Error("Your session has expired. Please sign in again.");
   return user;
 }
 

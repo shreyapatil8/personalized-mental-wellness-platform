@@ -1,0 +1,1337 @@
+
+--- PAGE 1 ---
+A
+Project Report on
+WellSpace : Personalised mental wellness platform for college students
+Submitted in partial fulfilment of the requirements for the award of degree of
+BACHELOR OF TECHNOLOGY
+in
+COMPUTER SCIENCE & ENGINEERING
+Submitted by
+Ms. Shreya Dipak Patil 23031038
+Ms. Priya Bapuso Hakke 23031035
+Mr. Aditya Laxman Patil 23031082
+Ms. Dhanashree Vitthal Sarje 23031071
+Under the Guidance of
+Prof. Amol S. Dange
+DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING
+Sant Dnyaneshwar Shikshan Sanstha’s
+ANNASAHEB DANGE COLLEGE OF ENGINEERING AND
+TECHNOLOGY, ASHTA
+(An Empowered Autonomous Institute)
+SHIVAJI UNIVERSITY, KOLHAPUR
+Academic Year : 2026-27
+
+--- PAGE 2 ---
+Sant Dnyaneshwar Shikshan Sanstha’s
+ANNASAHEB DANGE COLLEGE OF ENGINEERING AND
+TECHNOLOGY, ASHTA
+DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING
+CERTIFICATE
+This is to certify that the project report entitled “WellSpace : Personalised mental wellness platform
+for college students” is a bonafide work carried out by the following student(s):
+23031038 Ms. Shreya Dipak Patil
+23031035 Ms. Priya Bapuso Hakke
+23031082 Mr. Aditya Laxman Patil
+23031071 Ms. Dhanashree Vitthal Sarje
+in partial fulfilment of the requirements for the award of the Bachelor of Technology in Computer
+Science and Engineering at Annasaheb Dange College of Engineering and Technology, Ashta, for the
+Academic Year 2026–27. This report has been checked for plagiarism, and the similarity index is found
+to be within the permissible limit as per the institutional policy.
+Place: Ashta
+Date: / /
+Prof. Amol S. Dange Mrs. A. S. Todkar Dr. S. S. Sayyad Dr. L. Y. Waghmode
+Project Guide Project Coordinator Head of Department Director
+Date of Practical-Oral Exam: / / External Examiner
+
+--- PAGE 3 ---
+DECLARATION
+Declaration We declare that the project work entitled "Well Space: Personalised mental
+wellness platform for college students" which is being submitted to the Department of
+Computer Science and Engineering for the award of the Degree of Bachelor of Technology in
+Computer Science and Engineering, in the Academic Year 2026-27, is a bonafide report of the
+work done by us. We also declare that the work reported has not been submitted elsewhere for the
+award of a Degree.
+We understand what constitutes plagiarism and declare that this report is our own work. 2. The
+contents of this project report have not been submitted (in whole or in part) to any university or
+institution for the award of any degree, diploma or any other qualification. All borrowed material
+is acknowledged.
+URN NAME OF STUDENT SIGNATURE
+23031038 Ms. Shreya Dipak Patil
+23031035 Ms. Priya Bapuso Hakke
+23031082 Mr. Aditya Laxman Patil
+23031071 Ms. Dhanashree Vitthal Sarje
+Place: Ashta
+Date: / /
+i
+
+--- PAGE 4 ---
+ACKNOWLEDGEMENT
+We are grateful to our Project Guide Prof. Amol S. Dange Department of Computer Science
+and Engineering for providing his help, support and guidance for completing the project.
+We would also like to thank our Project Coordinator Mrs. Ashwini S. Todkar and Head of
+the Department, Dr. Suhel S. Sayyad, Department of Computer Science and Engineering for their
+constant guidance, effective suggestions and consistent support which enabled us to succeed in
+completing the project successfully.
+We would like to express our sincere and heartfelt thanks to Hon. Director Dr. L. Y.
+Waghmode for giving us the opportunity to do our project work with all the facilities, support,
+and motivation to make the project successful. We also extend our thanks and deepest sense of
+gratitude to all the faculties, staff and management of Annasaheb Dange College of Engineering
+and Technology, Ashta.
+At last, we would also like to thank our friends and family members for their always support,
+patience and encouragement that inspired us to complete this project successfully.
+Ms. Shreya Dipak Patil
+Ms. Priya Bapuso Hakke
+Mr. Aditya Laxman Patil
+Ms. Dhanashree Vitthal Sarje
+ii
+
+--- PAGE 5 ---
+Abstract
+College students contend with academic pressures, career and financial concerns, and feelings
+of loneliness and emotional distress - but they also struggle to find timely support due to a
+shortage of counsellors, affordability, stigma and reluctance to talk openly. AI-powered virtual
+assistants can provide round-the-clock help but lack specificity of guidance and transitions to a
+live counsellor as students get older.
+We are solving these problems by building the Well Space: Personalised mental wellness
+platform for college students that combines wellness profiling, ML-assisted counselling and AI
+support for counsellors in one single platform for students, counsellors and administrators.
+Students take a WHO-5 style wellbeing assessment, conduct daily mood check ins and write
+journal entries to form a longitudinal wellness history chart.
+In the server, the selected fresh consented records and fresh ML generation of the wellness-
+risk category in Python scikit-learn, XGBoost and the newly generated LLM based content-
+aware responses served through the Ollama API are streamed. An in-built counselling module
+allows students to make counselling requests, optionally share their wellness summaries with
+their consent and use the counsellor chat once approved. An administrator module allow
+counsellor approval, user management, usage reports and user satisfaction tracking..
+The system is developed using React.js (Vite), Tailwind CSS, Node.js, Express.js and MongoDB
+Atlas and secures data by bcrypt password hashing, token authentication, role access, data
+minimsation and voluntary action. This document describes the problem background, literature
+review, objectives, scope, feasibility, methodology with UML diagrams, facilities needed,
+project schedule, outputs achieved, test cases, conclusion, and future scope. The platform is a
+wellness support platform and does not substitute for professional mental health care, diagnosis,
+and emergency services.
+Keywords: Mental Wellness, Artificial Intelligence, AI Wellness Assistant, Wellness
+Intelligence Engine, Machine Learning, Natural Language Processing, Mood Tracking, Human
+Counselling, Role-Based Access Control
+iii
+
+--- PAGE 6 ---
+Contents
+Sr. No. Particulars Page No.
+Declaration i
+Acknowledgement ii
+Abstract iii
+Contents iv
+List of Figures vi
+List of Tables vii
+Chapter 1: Introduction 9
+1.1 Introduction 9
+1.2 Rationale 9
+1.3 Objectives 10
+1.4 Scope of Project 10
+1.5 Problem Statement 11
+1.6 Challenges 11
+Chapter 2: Literature Review 13
+2.1 Literature Review 13
+2.2 Research Gaps 14
+2.3 Literature Review Analysis 14
+Chapter 3: Project Feasibility 16
+3.1 Project Feasibility 16
+3.2 Need for the Project 16
+3.3 Significance of the Project 17
+Chapter 4: Sustainable Development Goals (SDGs) 19
+4.1 Introduction 19
+4.2 Alignment with SDG 3 19
+4.3 Contribution to SDG 3 Targets 20
+4.4 Expected Impact 20
+4.5 Conclusion 20
+Chapter 5: Methodology 22
+5.1 Proposed Methodology 22
+5.2 UML Diagrams 25
+5.2.1 Class Diagram 25
+5.2.2 Use Case Diagram 26
+5.2.3 Workflow 27
+5.2.4 Sequence Diagram 28
+5.2.5 State Chart Diagram 29
+5.3 Data Model and Data Dictionary 30
+5.4 Data Security and Privacy 30
+5.5 Evaluation Plan 30
+Chapter 6: Facilities Required for Proposed Work 33
+6.1 Facilities Required for Proposed Work 33
+6.1.1 Software Requirements 33
+6.1.2 Hardware Requirements 33
+Chapter 7: Project Schedule 36
+7.1 Project Schedule 36
+Chapter 8: Implementation and Output 39
+8.1 Implementation and Output 39
+8.1.1 Output 1 39
+8.1.2 Output 2 39
+iv
+
+--- PAGE 7 ---
+Sr. No. Particulars Page No.
+8.1.3 Output 3 40
+8.1.4 Output 4 40
+8.1.5 Output 5 41
+8.1.6 Output 6 42
+8.1.7 Evaluation Status 43
+8.2 Test Cases 44
+8.3 Conclusion and Future Scope 45
+8.3.1 Conclusion 45
+8.3.2 Future Scope 45
+References 46
+8.4 Author’s Biography 47
+8.5 Appendix 48
+v
+
+--- PAGE 8 ---
+List of Figures
+Figure No. Title Page No.
+4.1 Sustainable Development Goal 3: Good Health and Well-being 19
+5.1 Architecture of the Mental Wellness Platform 22
+5.2 Workflow of the Mental Wellness Platform 23
+5.3 Class Diagram of the Mental Wellness Platform 25
+5.4 Use Case Diagram of the Mental Wellness Platform 26
+5.5 Workflow (Activity Diagram) of the Mental Wellness Platform 27
+5.6 Sequence Diagram of an AI Wellness Assistant Request 28
+5.7 State Chart Diagram of an AI Wellness Assistant Request 29
+7.1 Project Schedule of the Mental Wellness Platform 36
+8.1 Landing Page of the Wellspace Platform 39
+8.2 Student Home Dashboard 39
+8.3 Wellness Assistant Chat Interface 40
+8.4 WHO-5 Wellbeing Assessment, Score and History 40
+8.5 Counselling Page – Request Appointment and My Appointments 41
+8.6 Appointment Request Options, Wellness Summary Consent and Appointment Status 41
+8.7 Counsellor and Administrator Workspace 41
+8.8 Administrator Dashboard 42
+8.9 Counsellor Request Review 42
+8.10 User Management 42
+vi
+
+--- PAGE 9 ---
+List Of Tables
+Table No. Title Page No.
+2.1 Review of Research Areas Relevant to the Platform 13
+4.1 Relevance of SDG 3 Targets to the Project 20
+5.1 Development Stages of the Platform 23
+5.2 Main Data Entities and Key Fields 30
+6.1 Software and Services Used in the Project 33
+8.1 Test Cases for the Mental Wellness Platform 44
+A.1 Glossary of Terms Used in the Report 48
+vii
+
+--- PAGE 10 ---
+Personalized Mental Wellness Platform for College Students
+Chapter-01
+Annasaheb Dange College of Engineering and Technology,Ashta 8 | P a g e
+
+--- PAGE 11 ---
+Personalized Mental Wellness Platform for College Students
+Introduction
+1.1 Introduction
+The rapid proliferation of digital technology has presented a new channel for access to mental
+wellness support. College students often experience academic pressures, career concerns, social
+isolation, relationship challenges and general daily demands. Unfortunately, limited access to
+professional counsellors, cost, societal stigma and discomfort to share their concerns often
+prevents a young adult from getting proper and timely wellness support.
+Artificial Intelligence (AI) and Natural Language Processing (NLP) allow us to create a system
+that engages with students over a text conversation and can advise students on their overall
+wellbeing. Responses can be generated instantly by AI assistants, but responses that don't take
+account of a student's prior experiences might come across as inauthentic. Human counselling
+allows for a more personal and professional response, but space, time and finances may make
+this difficult to access. Mood tracking and journaling enable students to reflect, but the
+information does not 'follow' the student if they move away from the assistant or counsellor.
+The Well Space: Personalised mental wellness platform for college students combines wellness
+profiling, ML-enabled wellness prediction and AI-supported counselling platform together in a
+unified web-based platform. Some of the platform's key components are:
+1. Secure User and Profile Management:
+The platform helps the students, counsellors, and administrators in registration, login, roles
+selection, and storing each student's wellness-related data.
+2. Tracking Your Wellbeing:
+Students also fill out a standard WHO-5 style wellbeing measure, check in their moods and
+journal. All of this contributes to a longitudinal wellness history.
+3. Context-Aware AI Wellness Assistant:
+A locally hosted LLM served through the Ollama API, provides a warm, personalised reply that
+brings together the most relevant and up-to-date records, the latest ML-based prediction of
+wellness, and a Wellness Intelligence Engine (WIE).
+4. Human Counselling Assistance:
+Students can then set up appointments with counsellors, determine whether or not a wellness
+summary can be shared with the counsellor, and chat with the counsellor once the request has
+been made.
+5. Dashboards & Admin:
+A student dashboard displays wellness scores and history, while an administrator dashboard
+supports counsellor approval, user management, usage reporting and user satisfaction.
+Annasaheb Dange College of Engineering and Technology,Ashta 9 | P a g e
+
+--- PAGE 12 ---
+Personalized Mental Wellness Platform for College Students
+A web-based modern platform, The application consists of a React.js (Vite) frontend (consisting
+of Tailwind CSS and React components), Node.js + Express.js backend, data persistence using
+MongoDB Atlas, a scikit-learn / XGBoost based Python module that makes wellness prediction,
+all through a scalable architecture that serves as a wellness support platform. The platform is not
+a substitute for licensed health practitioners, a clinical diagnosis or emergency services.
+1.2 Rationale
+The reasons for which the platform was created are: Accessibility, increasing utilisation,
+accessibility to personalised and continuous support for student wellness.
+- Difficulty seeking support: students experiencing academic stress, career fears, loneliness and
+emotional distress may be reluctant to ask for help due to financial concerns, the unavailability
+of counsellors or the embarrassment of seeking help.
+- AI assistants offer instant help, but generic conversations may not address the reality and
+context of what is worrying a student. A well-structured profile of a student's well-being
+ensures the responses are personalised.
+- Why? Human Counselling is important because some students prefer personal contact with
+the counsellor. Integrating the elements of AI assistance and Counselling together in one
+platform gives a choice to the students.
+Annasaheb Dange College of Engineering and Technology,Ashta 10 | P a g e
+
+--- PAGE 13 ---
+Personalized Mental Wellness Platform for College Students
+• Continuity Between AI and Human Support: Students often have to repeat their concerns
+when they move from digital assistance to a counsellor. With their consent, a summary of
+relevant wellness information can support continuity.
+• Monitoring Wellness Progress: Mood check-ins, journaling and assessment history help
+students notice patterns over time and review their own wellness journey.
+• Need for an Integrated Platform: Providing the assistant, wellness tracking, dashboard
+and counselling in one application makes support easier to find and manage for students,
+counsellors and administrators.
+The platform therefore aims to combine the accessibility of AI-based assistance with the option
+of human counselling and personalised wellness guidance, while recognising that it does not
+replace professional mental healthcare or emergency support.
+1.3 Objectives
+1. Ability to develop and implement a secure user management and personalised wellness profile
+module for storing student data as well as wellness related activities.
+2. To create a wellness tracking module for the collection and storage of wellness assessments,
+mood entries and journal entries to create a longitudinal wellness history of the student.
+3. To design and implement an AI-based wellness assistant that provides context-aware and
+personalised responses using an ML-based wellness prediction, a Wellness Intelligence Engine
+for context selection and a locally hosted LLM served through Ollama for response generation.
+4. Create a professional counselling module for interaction between student-counsellor and AI
+generated student summaries as well as facilitation of appointment and management.
+5. Create a customised wellness dashboard for tracking and visualising wellness score, mood
+trends, assessment history and progress over time.
+6. To form the admin monitoring and system management module. Which is used for monitoring
+the students' and the counsellor's registration, analyzing user experience and feedback, and
+checking the overall system performance.
+Annasaheb Dange College of Engineering and Technology,Ashta 11 | P a g e
+
+--- PAGE 14 ---
+Personalized Mental Wellness Platform for College Students
+1.4 Scope of Project
+The scope of work includes the design and development of a web-based application that offers
+personalised digital wellness support and access to human counselling for college students. The
+platform is catered to three user roles: students, counsellors and administrators.
+Key Modules and Functional Scope
+ User Management and Wellness Profile: sign in, create an account, verify authenticity,
+permission permissions and profile information.
+ Wellness Tracking: recorded wellbeing evaluations, regular mood reviews and journal
+entries as a history of health.
+ Text-Based analysis: where used, NLP methods detect potential mood themes within text
+submitted by students to help deliver tailored general wellbeing support. This is not a clinical
+diagnosis.
+ Wellness Prediction using ML: a Python based model generates an wellness-risk category
+(Low, Medium or High) which is entered into the prediction history.
+ AI Wellness Assistant: supportive text conversations produced by a LLM hosted locally on
+Ollama using context chosen by the Wellness Intelligence Engine.
+ Counselling Module: appointment requests, counsellor approval, sharing wellness summary
+based on student consent, and student to counsellor chat.
+ Wellness Dashboard: wellness scores and history of assessment results and wellness
+summary of the student.
+ Admin Module: counsellor request approval, user management, usage & reports, and user
+satisfaction monitoring.
+ Security and Privacy: hashed passwords, token-based sessions, access controls, role-based
+permissions, minimisation of data, consent to share personal records.
+Annasaheb Dange College of Engineering and Technology,Ashta 12 | P a g e
+
+--- PAGE 15 ---
+Personalized Mental Wellness Platform for College Students
+.
+Overall Scope
+The project focuses on accessible and personalised wellness support for students through AI
+assistance and human counselling. The platform is intended for general wellness support and
+does not replace professional mental healthcare, clinical diagnosis, treatment or emergency
+services. The features of the final system depend on the implementation completed during the
+project.
+1.5 Problem Statement
+Ideal Scenario
+The ideal support system for college students' mental wellness offers personalized, real-time and
+24/7 support throughout the wellness journey. It must take into account the wellness assessments,
+mood logs, journal entries and previous conversations of the student to provide relevant
+suggestions and help the student have seamless interaction with professional counsellors. It
+should be able to keep track of the student's wellness context across times and allow counsellors
+an efficient overview of students.
+Most existing platforms offer online counselling and AI chatbot as independent features. An AI
+chatbot might offer responses that are cookie cutter in nature and may not fully understand the
+long-term context of the student, whereas a counsellor might require some time to understand
+the student's context before providing relevant assistance. Current systems lack seamless
+integration of wellness checks, AI support and counsellor meetings.
+Consequences
+The repetitive or less individualized assistance from apps can contribute to lower levels of
+motivation and trust towards digital platforms for mental wellness. Counsellors may need to
+allocate further time to go through a student's wellness progress, which leads to less effective use
+of the counselling time and effort. The non-availability of wellness tracking makes it more
+challenging for students and counsellors to follow individual progress and initiate relevant
+actions.
+Proposed Solution
+To address these gaps, this project introduces a Personalized Mental Wellness Platform for
+College Students – an integrated application that encompasses wellness assessment, AI-enabled
+mental health support and engagement with a professional counsellor. The platform maintains a
+comprehensive wellness profile of the user using wellness assessment, mood, journal entries, and
+Annasaheb Dange College of Engineering and Technology,Ashta 13 | P a g e
+
+--- PAGE 16 ---
+Personalized Mental Wellness Platform for College Students
+conversation history, and employs a Machine Learning model trained on a student wellness data
+set to predict the user's level of wellness/stress risk, and a Wellness Intelligence Engine to
+generate prioritized, relevant context for the AI assistant. The platform also provides AI-assisted
+summarizations for counsellors as well as appointments. The tool offers personalized,
+continuously available, contextually aware mental health and wellness care to students in support
+of counselling.
+1.6 Challenges
+The technical, ethical and operational issues are as follows:
+• The relevance of suggestions is dependent on accurate and complete assessment
+responses.
+• Issues with the Response generated could be generic, inaccurate or inappropriate, so to
+exclude:
+Misleading response. Unsubstantiated clinical decision making.
+• Perceiving Emotions: words may have various connotations and consequently a text
+emotion analysis might have an error in capturing what exactly a student is feeling.
+• Privacy and Confidentiality: assessments, journals and conversations are personal and
+require secure authentication, control of access and prudent collection and storage of
+data.
+• Users must be told exactly how information is being used and the limits of the system.
+• The platform should not propose to diagnose and should escort students toward
+professional/emergency assistance if they display excessive distress.
+• Performance and availability - reliance on a locally hosted language model can impact
+the reliability and performance based on the server hardware and time to respond.
+• Assessment of efficacy: the benefits of tailored help with the information must be
+demonstrated through testing and feedback – must not be assumed.
+Annasaheb Dange College of Engineering and Technology,Ashta 14 | P a g e
+
+--- PAGE 17 ---
+Personalized Mental Wellness Platform for College Students
+Chapter-02
+Annasaheb Dange College of Engineering and Technology,Ashta 15 | P a g e
+
+--- PAGE 18 ---
+Personalized Mental Wellness Platform for College Students
+Annasaheb Dange College of Engineering and Technology,Ashta 16 | P a g e
+
+--- PAGE 19 ---
+Personalized Mental Wellness Platform for College Students
+Literature Review
+2.1 Literature Review
+ Some of the areas of research related to the platform are: AI assisted mental wellness chatbots
+- chatbots that deliver a conversational support Personalised digital wellness support -
+affording digital services one to cater to an individual's specific needs. Mood tracking and
+sentiment analysis - users can review his or her emotional state and sentiments towards topics
+Digital counselling platforms - users can communicate with human counsellors.
+ The documents in the bibliography are the basis for various parts of the design The World
+health organisation (2022) World Mental health report [2] emphasizes the importance of
+mental health and accessibility of support which is what is driving the platform. The World
+health organisation (2018) fact sheet on strengthening the response to mental health [1] backs
+up the previous at a policy level. Their focus is why? They don't list a technical solution.
+ Devlin et al. (2019) gave us BERT [8], a pre-trained bidirectional language representation
+model that forms the foundation of most text understanding today. It supplies context for text-
+based emotion and sentiment analysis, but it is a general purpose model and not trained
+specifically for mental wellness. OpenAI (2023) offers an overview of GPT-4 [4], a large
+language model; the report also explains limitations such as reliability and incorrect outputs,
+which is why the AI responses appear as aids, the context sent to the model is limited and it
+does not make diagnoses. The API docs for Ollama [9] explain the interface by which the
+platform requests responses.
+ The ethical and responsible use of AI in a sensitive area is discussed by WHO (2021) Ethics
+and Governance of Artificial Intelligence for Health [3], which introduces principles such as
+safeguarding human autonomy, transparency, accountability and inclusiveness and the NIST
+AI Risk Management Framework (2023) [5], a set of processes for identifying and managing
+risks to the users of AI systems. Both articles inform the consent-based data sharing,
+minimisation of the data collected and the explicit statement of platform limits. The security
+of the web application is based on the OWASP Application Security Verification Standard [6]
+and usability testing is performed with the System Usability Scale developed by Brooke [7].
+ While these approaches have potential, designing and evaluating a platform for high-quality
+structured wellness assessment, personalised AI support, wellness tracking and coverage from
+AI to human counselling requires work. Table 2.1 table summarises these areas and their
+limitations in the context of our proposed system.
+Table 2.1: Review of Research Areas Relevant to the Platform
+Annasaheb Dange College of Engineering and Technology,Ashta 17 | P a g e
+
+--- PAGE 20 ---
+Personalized Mental Wellness Platform for College Students
+No. Research Area Method / Contribution Limitation / Research Gap
+1 AI-based mental Conversational AI provides immediate Responses may be generic and may not
+wellness chatbots responses, supportive dialogue and reflect each user’s concerns or
+general wellness guidance. preferences.
+2 Personalised mental Uses user-provided information, Personalisation is limited when
+wellness support preferences and previous interactions to structured profiles and ongoing context
+tailor suggestions. are not used effectively.
+3 Emotion and Analyses text to identify sentiment and May misinterpret context and must not
+sentiment analysis possible emotional patterns. be treated as a clinical assessment.
+using NLP
+4 Digital mood tracking Lets users record moods and reflections Tracking alone gives no personalised
+and journaling and review changes over time. guidance and no link to human
+counselling.
+5 Online counselling Connect users with human counsellors Depends on counsellor availability,
+platforms through digital communication. scheduling, affordability and continuity
+between sessions.
+6 Hybrid AI and human Combine automated assistance with Personalisation quality, consent,
+support systems access to human support. information sharing and AI-to-human
+transitions need careful evaluation.
+The entries in Table 2.1 are summaries of research areas rather than findings of individual papers.
+[Add author, title and year of specific research papers on mental-health chatbots, WHO-5 and
+NLP-based emotion analysis here once selected and verified]
+Annasaheb Dange College of Engineering and Technology,Ashta 18 | P a g e
+
+--- PAGE 21 ---
+Personalized Mental Wellness Platform for College Students
+2.2 Research Gaps
+From the methodologies mentioned above the following research gaps could be addressed:
+1. Fragmented support options: AI help and human counselling typically exist within two
+different flows rather than within one unified platform.
+2. Need for customised interactions: generic responses by AI might not resemble the anxieties,
+needs and wellness goals the user expresses.
+3. Lack of continuity of support: users may need to repeat information when transitioning from
+an AI assistant to a human counsellor.
+4. Minimal linking of wellness tracking: mood logs and journal entries frequently do not link to
+personalised feedback and summary of progress.
+5. Emotion analysis issues: Text-based emotion analysis cannot always include context and
+understanding, therefore responsible use and transparent limitations are important.
+6. Requireevaluation: we cannot take for granted usability, relevance and usability of an
+integrated AI and counselling platform.
+2.3 Literature Review Analysis
+Existing solutions to student wellness have some aspects of the problem, but they are not used
+together. For example, a chatbot can give you on-demand answers that have not been informed by
+prior interactions; a mood tracking tool can tell you how you're feeling without advising you; and
+an online counselling service can begin a session without considering all previous digital
+conversations.
+In order to address these challenges the platform designs 1. Structured wellbeing assessment 2.
+Mood and journal logging 3. ML based wellbeing prediction 4. Wellness Intelligence Engine for
+context selection for the Ollama based assistant 5. Consent based counselling workflow with
+admin dashboard. The responsible AI framework provided by the WHO and NIST has been
+leveraged to define the privacy, consent and safety features. The gaps are minimized as all
+techniques are supported by literature.
+Annasaheb Dange College of Engineering and Technology,Ashta 19 | P a g e
+
+--- PAGE 22 ---
+Personalized Mental Wellness Platform for College Students
+Chapter-03
+Annasaheb Dange College of Engineering and Technology,Ashta 20 | P a g e
+
+--- PAGE 23 ---
+Personalized Mental Wellness Platform for College Students
+Project Feasibility
+3.1 Project Feasibility
+A feasibility study assesses whether the system is feasible (possible to develop) given the
+technology, resources, schedule and budget. The overall feasibility of Mental Wellness Platform
+is conducted from technical, operational and scheduling viewpoints.
+1. Technical Feasibility :
+Feasibility of the platform is not an issue, since the tools that would be used are the most
+prominent web technologies, ML libraries, AI services and cloud platforms. Frontend:
+React.js(Vite), Tailwind CSS, Node.js, Express.js (API), can be used for API Testing, real-time
+connection (Socket.io). Cloud database storage: MongoDB Atlas; Media files: Cloudinary;
+wellness prediction model: scikit-learn, XGBoost, Python; ai conversation: ollama - local open-
+source large language model available in local environment, openapi-driven; Development:
+Postman, Git, GitHub, Vercel, Render, or Railway, Visual Studio Code.
+2. Operational Feasibility :
+The web application provides an easy, responsive frontend where students can register, take tests,
+log moods, journals, communicate with the assistant and make requests for counselling.
+Counselling requests are handled through the counsellors' dashboard and registrations and usage
+are viewed from the admin panel. User authentication and role-specific access control provide
+protection. As mental health is a sensitive topic, the application explains its limitations and does
+not display model results or AI responses as diagnoses, students are advised to seek professional
+counselling.
+3. Economic Feasibility :
+Cost is minimised since React.js, Node.js, Express.js, Python, scikit-learn and XGBoost are open
+source with all development tools (Visual Studio Code, Git, GitHub, Postman) being free. Since
+Ollama and the open source language models it runs are free there is no charge for API requests,
+though costs for a computer with enough RAM (and preferably a GPU) to run the model, storage
+on MongoDB Atlas, media storage, hosting and purchasing a domain name will have to be paid
+for. Development can take place locally, using free tier cloud providers, before deploying using
+other free tier cloud offerings. Costs should be checked against the current prices of each
+provider. The project remains cost effective enough to work as a student level prototype.
+4. Schedule Feasibility :
+Annasaheb Dange College of Engineering and Technology,Ashta 21 | P a g e
+
+--- PAGE 24 ---
+Personalized Mental Wellness Platform for College Students
+We will break the project into phases to be finished within the academic semesters: requirement
+analysis, system design, frontend + backend development, database, AI, machine learning,
+additional features, testing and deployment with documentation. Phased development reduces
+the risk of technical issues (see Chapter 6), and there is enough time for integration tests and
+documentation.
+5.Conclusion :
+According to the proposed architecture, the project is technically feasible from operational,
+economic, and scheduling point of views. Further, the final feasibility of the project will also
+depend upon availability of API,computing power, security and inter-compatibility of
+application components.
+3.2 Need for the Project
+ Students are reluctant to ask for assistance because of the expense, the lack of counsellors and
+social stigmas- a user friendly initial point of assistance is essential.
+ Generic AI answers are not based on a student's own history, you will need a platform that
+provides the assistant with relevant, consented context.
+ Students also tend to repeat themselves when shifting from digital support to a counsellor but
+this can be minimized with consent-based summaries.
+ Mood, journal and assessment records are most useful when connected to personalised
+guidance and progress review rather than kept separately.
+ Counsellors and administrators need a single place to manage appointment requests,
+registrations, usage and user feedback.
+ A responsible platform must state its limitations, protect sensitive data and guide students to
+professional or emergency help when necessary.
+Annasaheb Dange College of Engineering and Technology,Ashta 22 | P a g e
+
+--- PAGE 25 ---
+Personalized Mental Wellness Platform for College Students
+3.3 Significance of the Project
+ Accessibility: accessible via a web app available to students anytime.
+ Personalisation: integrates assessment history, mood logs, journal topics and an ML wellness
+prediction so that replies are tailored to the individual student.
+ Continuity of care: the ability for a student to share their wellness summary with a
+counsellor, with permission, so that between AI and human support the student's mental
+health needs are sustained.
+ Awareness: helps students consider their wellness by scores, trends and history.
+- Institutional value: informs administrators about registrations, usage and satisfaction, to
+better the wellness programme.
+ Design in the public interest: utilises hashed passwords, role-based access, minimisation of
+data, requiring clear and ongoing consent, as a complement to professional care.
+Annasaheb Dange College of Engineering and Technology,Ashta 23 | P a g e
+
+--- PAGE 26 ---
+Personalized Mental Wellness Platform for College Students
+Chapter-04
+Annasaheb Dange College of Engineering and Technology,Ashta 24 | P a g e
+
+--- PAGE 27 ---
+Personalized Mental Wellness Platform for College Students
+Sustainable Development Goals (SDGs)
+4.1 Introduction
+SDG 3: Good Health and Well-being
+Goal: Good Health and Well-being as the platform helps promote mental well-being of students
+by offering easily accessible, personalized, and tech-enabled mental health support.
+Figure 4.1: Sustainable Development Goal 3: Good Health and Well-being
+Mental health means the emotional, psychological, and social well-being of a person. Students go
+through different emotional strains that include stress, anxiety, studies-related stress, uncertain
+about career and so on which hampers their educational life and life in general. But some students
+are hesitant to go for counselling due to several reasons.
+Our initiative, the Personalized Mental Wellness Platform, seeks to remedy this via a web-based
+application that offers students a safe outlet to share their emotions, keep track of their mental
+health, and access the help they need.
+4.2 Alignment with SDG 3
+The project supports the objectives of SDG 3 by focusing on mental health awareness, early
+identification of wellness concerns, and improved resources. It provides the following features:
+• AI-based mental wellness assistant: Offers students an accessible first point of support
+for discussing everyday concerns and receiving general wellness guidance.
+• Professional counselling: Enables students to connect with counsellors through the
+platform for personalized support.
+• Wellness assessment: Uses assessment responses to estimate stress-related patterns and
+help students better understand their well-being.
+• Daily mood tracking: Allows students to record their moods and observe changes in their
+emotional state over time.
+• Personal journal: Provides a private space for students to express their thoughts, feelings,
+and daily challenges.
+Together, these features aim to encourage students to acknowledge their emotional concerns and
+seek support when needed.
+Annasaheb Dange College of Engineering and Technology,Ashta 25 | P a g e
+
+--- PAGE 28 ---
+Personalized Mental Wellness Platform for College Students
+4.3 Contribution to SDG 3 Targets
+The project is particularly relevant to the following SDG 3 targets, as summarised in Table 4.1.
+Table 4.1: Relevance of SDG 3 Targets to the Project
+SDG Target Relevance to the Project
+Target 3.4 – Promote mental Encourages mental health awareness, self-reflection, mood monitoring, and
+health and well-being access to support.
+Target 3.8 – Achieve universal Provides a digital channel through which students can access information
+health coverage and access to and connect with professional counsellors, although it does not replace
+quality essential health services formal healthcare services.
+4.4 Expected Impact
+The expected contribution of the project includes:
+• Increasing awareness of mental wellness among students.
+• Encouraging students to express their feelings and monitor their emotional well-being.
+• Reducing barriers to seeking initial mental health support.
+• Facilitating access to professional counselling through a digital platform.
+• Helping counsellors prepare for sessions using relevant, consented student information.
+• Promoting responsible use of AI as a supportive tool alongside human counselling.
+The platform is designed to complement professional mental health services rather than replace
+qualified mental health practitioners.
+4.5 Conclusion
+The Personalized Mental Wellness Platform contributes to the broader objectives of SDG 3: Good
+Health and Well-being by integrating AI-assisted support, professional counselling, wellness
+assessment, mood tracking, journaling, and consent-based information sharing into a single
+digital platform. By making mental wellness support more accessible and encouraging students
+to take an active role in understanding their emotional well-being, the project supports the goal
+of promoting mental health and improving access to appropriate support. Its actual impact will
+depend on responsible implementation, privacy protection, the quality of support provided, and
+evaluation with real users.
+Annasaheb Dange College of Engineering and Technology,Ashta 26 | P a g e
+
+--- PAGE 29 ---
+Personalized Mental Wellness Platform for College Students
+Chapter-05
+Annasaheb Dange College of Engineering and Technology,Ashta 27 | P a g e
+
+--- PAGE 30 ---
+Personalized Mental Wellness Platform for College Students
+Methodology
+4.1 Proposed Methodology
+Figure 5.1: Architecture of the Mental Wellness Platform
+The proposed platform follows an incremental development approach in which the application is
+divided into modules that are developed and tested separately before integration. The architecture
+is modular: a React.js frontend communicates with a Node.js and Express.js backend; the
+backend stores data in MongoDB Atlas, requests responses from the Ollama API and uses a
+Python machine learning predictor (scikit-learn, XGBoost); Cloudinary provides media storage
+where required; and the application is deployed using Vercel with Render or Railway. The
+methodology consists of the following stages.
+1. User Registration, Authentication and Profile Management :
+The platform provides registration and login for students, counsellors and administrators.
+– Passwords are hashed with bcrypt and never stored as plain text
+– Session access uses token-based (JWT) authentication
+– Role-based access control restricts students, counsellors and administrators to their own features
+– Counsellor registrations are reviewed and approved by an administrator before support is enabled
+2. Wellness Data Collection :
+Students provide wellness information through three channels.
+– A WHO-5 style wellbeing assessment of structured questions that produces a score and keeps an
+assessment history
+– Mood check-ins that record the student’s mood on a given day
+– Journal entries in which students write personal reflections
+– Inputs are validated before being sent to the backend and only necessary information is collected
+3. ML-Based Wellness Prediction :
+A Python component using scikit-learn and XGBoost classifies wellness-risk into Low, Medium
+or High from assessment-derived features. Each prediction is stored with its timestamp in the
+student’s prediction history. Predictions are decision-support information for personalisation and
+Annasaheb Dange College of Engineering and Technology,Ashta 28 | P a g e
+
+--- PAGE 31 ---
+Personalized Mental Wellness Platform for College Students
+are never presented as clinical diagnoses.
+4. Text Processing and Theme Identification :
+Where implemented, text from journals and messages is cleaned and analysed to identify possible
+emotional themes. The themes are used only to select and organise context for supportive
+responses and for counsellor summaries, and are not clinical assessments.
+5. Wellness Intelligence Engine (Context Selection) :
+Before the AI assistant replies, the Wellness Intelligence Engine selects the information that is
+relevant to the current message. It considers assessments, mood records, journal themes, the latest
+ML prediction and earlier nversations, ranks them by relevance and recency, and applies a token
+budget so that only the minimum necessary context is prepared. Only records for which the
+student has given consent are used.
+6.AI-Assisted Wellness Support :
+The backend validates the student’s message, attaches the selected context and sends the prompt
+to the Ollama API. The generated response is returned to the interface together with a reminder
+that it is supportive guidance and not a diagnosis or a replacement for professional counselling.
+Each exchange is stored in the student’s chat history, and temporary failures are retried a limited
+number of times before a friendly message is shown.
+7.Human Counselling Support :
+Students request an appointment by choosing a counsellor, a future date and time, a topic and an
+optional note. They may allow a wellness summary to be prepared for the counsellor; this
+requires consent in the student’s profile. The counsellor approves or declines the request from
+the counsellor dashboard. After approval, the student and counsellor can use the counselling chat
+and shared documents. Appointment status is tracked as pending, approved, completed, cancelled
+or rescheduled.
+8.Dashboards, Administration and Evaluation :
+Students view their score, assessment history and wellness overview. Administrators view total
+students, active counsellors, pending counsellor requests, total users and feedback, manage user
+accounts, and review usage reports and user satisfaction. The system is evaluated through
+functional, integration and security testing, and usability assessment.
+Annasaheb Dange College of Engineering and Technology,Ashta 29 | P a g e
+
+--- PAGE 32 ---
+Personalized Mental Wellness Platform for College Students
+Figure 5.2: Workflow of the Mental Wellness Platform
+The development of the platform follows the twelve stages summarised in Table 5.1.
+Table 5.1: Development Stages of the Platform
+Stage Activities Output
+1. Requirement Analysis Identify user requirements, objectives, core features Requirement specification
+and constraints.
+2. System Design Design the architecture, user interface, database System design
+structure and API communication.
+3. Frontend Develop the user interface with React.js (Vite) and Interactive frontend
+Development Tailwind CSS.
+4. Backend Development Implement server logic, API endpoints and services Backend services
+with Node.js and Express.js.
+Stage Activities Output
+5. Database Integration Configure MongoDB Atlas for user profiles, wellness Database-connected
+records and other data. application
+6. AI Integration Integrate the Ollama API with a locally hosted LLM for AI conversation
+wellness conversations. functionality
+7. Machine Develop and evaluate the wellness prediction model Trained and evaluated
+Learning Module with Python, scikit-learn and XGBoost. model
+8. Authentication and Implement authentication and access control; use Controlled user access
+Communication Socket.io for real-time communication if required.
+9. Media Management Integrate Cloudinary for media assets, if required. Managed media resources
+10. Testing and Test frontend, APIs, database operations, AI responses Tested integrated
+Integration and prediction. application
+11. Deployment Deploy the frontend through Vercel and the backend Deployed web application
+through Render or Railway.
+12. Documentation Prepare documentation, test results, screenshots and the Project documentation
+final report.
+Annasaheb Dange College of Engineering and Technology,Ashta 30 | P a g e
+
+--- PAGE 33 ---
+Personalized Mental Wellness Platform for College Students
+4.2 UML Diagrams
+4.2.1 Class Diagram
+Figure 5.3: Class Diagram of the Mental Wellness Platform
+The class diagram shows the main entities and services of the platform. The User class holds identity, role and
+account status and is associated with the records a student creates: WellnessAssessment, MoodLog,
+JournalEntry and AIConversation, and with CounsellingAppointment. A WellnessPrediction stores the
+Low, Medium or High category produced by the MLRiskPredictor from assessment features. The
+WellnessIntelligenceEngine reads consented records and the latest prediction and supplies context to the
+AIAssistantService, which calls the Ollama API and stores the exchange. A CounsellorSummary may be
+generated for an appointment when the student has given consent, and AuthService provides authentication
+and role authorisation.
+Annasaheb Dange College of Engineering and Technology,Ashta 31 | P a g e
+
+--- PAGE 34 ---
+Personalized Mental Wellness Platform for College Students
+4.2.2 Use Case Diagram
+Figure 5.4: Use Case Diagram of the Mental Wellness Platform
+The use case diagram describes the interaction of the three actors with the system. A student
+registers, completes the wellbeing assessment (which includes prediction of the wellness-risk
+category), records moods, writes journals, chats with the AI assistant (which includes context
+selection by the Wellness Intelligence Engine), views the wellness overview and history, requests
+counselling, optionally consents to share a wellness summary, chats with the counsellor and
+manages the profile. A counsellor reviews and approves appointment requests, conducts the
+counselling chat and views a student’s wellness summary when consent has been given. An
+administrator approves or rejects counsellor requests, manages users, and views usage reports
+and user satisfaction.
+Annasaheb Dange College of Engineering and Technology,Ashta 32 | P a g e
+
+--- PAGE 35 ---
+Personalized Mental Wellness Platform for College Students
+4.2.3 Workflow
+Figure 5.5: Workflow (Activity Diagram) of the Mental Wellness Platform
+The workflow begins with registration or sign-in. After credentials are checked, the user’s role
+decides the workspace: the student home dashboard, the counsellor workspace or the
+administrator dashboard. From the student home the student may complete an assessment, record
+a mood or journal entry, chat with the assistant or request counselling. A chat message is
+validated, relevant consented context is selected and the Ollama API generates a response. For
+counselling, the student chooses whether to share a wellness summary, the counsellor approves
+the request and the counselling chat begins. All paths return to the wellness overview.
+Annasaheb Dange College of Engineering and Technology,Ashta 33 | P a g e
+
+--- PAGE 36 ---
+Personalized Mental Wellness Platform for College Students
+4.2.4 Sequence Diagram
+Figure 5.6: Sequence Diagram of an AI Wellness Assistant Request
+The sequence diagram shows one request to the AI wellness assistant. The student’s message
+passes from the React frontend to the Express backend with a JWT. The backend verifies the
+token and role and validates the input; invalid input returns a validation message. The backend
+then fetches the student’s consented records and latest prediction from MongoDB Atlas, asks the
+Wellness Intelligence Engine to select and rank relevant context within a token budget, and sends
+the prompt to the Ollama API. If the AI service is unavailable after limited retries, a friendly
+message is returned. Otherwise the exchange is stored and the response is displayed with a note
+that it is not a diagnosis.
+Annasaheb Dange College of Engineering and Technology,Ashta 34 | P a g e
+
+--- PAGE 37 ---
+Personalized Mental Wellness Platform for College Students
+4.2.5 State Chart Diagram
+Figure 5.7: State Chart Diagram of an AI Wellness Assistant Request
+The state chart describes the life cycle of an assistant request. The system starts in the Idle state.
+When the student sends a message it moves through AccessCheck and InputValidation; failures
+lead to AccessDenied or InvalidInput and return to Idle with an appropriate message. Valid
+requests continue through ContextSelection, PromptPreparation and ResponseGeneration.
+A temporary failure enters a limited Retry state and finally ServiceUnavailable if the limit is
+reached. A successful response is displayed, the exchange is stored and the system returns to
+Idle.
+Annasaheb Dange College of Engineering and Technology,Ashta 35 | P a g e
+
+--- PAGE 38 ---
+Personalized Mental Wellness Platform for College Students
+4.3 Data Model and Data Dictionary
+MongoDB Atlas stores the application data. The main collections and their key fields are
+summarised in Table
+5.2. Only necessary information is collected, and sensitive wellness information and conversation
+records are protected by access control and data-retention practices.
+Table 5.2: Main Data Entities and Key Fields
+Entity Key Fields Purpose / Handling
+User user_id, full_name, email, password_hash, age, Identifies users and roles;
+education_details, role, account_status, created_at passwords stored only as bcrypt
+hashes.
+WellnessAssessment assessment_id, user_id, assessment_type, Stores assessment answers, score
+responses, assessment_score, result_category, and history.
+assessment_date
+MoodLog mood_log_id, user_id, mood_value, Stores mood check-ins.
+mood_intensity, notes, recorded_at
+JournalEntry journal_id, user_id, entry_text, entry_date, Stores reflections; used by the
+consent_for_ai_processing assistant only with consent.
+WellnessPrediction prediction_id, user_id, predicted_category, Stores the Low / Medium / High
+confidence_score, model_version, predicted_at category and prediction history.
+AIConversation conversation_id, user_id, user_message, Stores chat history subject to the
+assistant_response, context_reference, retention policy.
+consent_status, created_at
+CounsellingAppointment appointment_id, student_id, counsellor_id, Tracks requests, approval and
+appointment_date, appointment_status, status.
+student_consent, summary_reference
+CounsellorSummary summary_id, student_id, counsellor_id, period, Summary for the counsellor,
+mood_trends, assessment_trends, journal_themes, generated only with consent.
+consent_status
+4.4 Data Security and Privacy
+The following measures are applied to maintain the security and privacy of the platform:
+• Password protection: passwords are hashed using bcrypt and never stored as plain text.
+• Authentication and authorisation: token-based login and role-based access control
+restrict unauthorised access.
+• Database security: MongoDB Atlas access is restricted through database permissions and
+secure connection settings.
+• API key protection: the Ollama endpoint configuration, database credentials and JWT
+secret are kept in environment variables or a secret-management service and never exposed
+in frontend code or public repositories.
+• Data minimisation and consent: only necessary information is collected, and wellness
+summaries, journal content and chat history are shared or used only with the student’s
+consent.
+Annasaheb Dange College of Engineering and Technology,Ashta 36 | P a g e
+
+--- PAGE 39 ---
+Personalized Mental Wellness Platform for College Students
+• Secure communication: HTTPS is used between the deployed frontend and backend.
+• Input validation and error handling: inputs are validated, and error messages do not reveal
+passwords, keys, credentials or internal details.
+• Safety statement: the interface states that the assistant gives supportive guidance, not a
+diagnosis, and encourages professional help where necessary.
+4.5 Evaluation Plan
+The platform is evaluated through the following activities.
+• Functional testing: registration and login, profile management, assessment, mood and
+journal records, AI conversation, counselling booking and administrator functions.
+• Integration testing: communication among the frontend, backend, MongoDB Atlas,
+Ollama API and the Python predictor, including handling of API failures, invalid inputs
+and network interruptions.
+• Security testing: authentication, access permissions, input validation, protection of secret
+keys and handling of sensitive information.
+• Machine learning evaluation: if a prediction model is used, a test set separate from the
+training data is used and accuracy, precision, recall, F1-score and a confusion matrix are
+reported only from measured results.
+• AI response evaluation: responses are reviewed for relevance, clarity, consistency and
+avoidance of unsupported diagnostic claims.
+• Overall evaluation: usability (for example with the System Usability Scale), reliability and
+deployment behaviour, with actual outcomes, failures and limitations documented.
+Annasaheb Dange College of Engineering and Technology,Ashta 37 | P a g e
+
+--- PAGE 40 ---
+Personalized Mental Wellness Platform for College Students
+Chapter-06
+Annasaheb Dange College of Engineering and Technology,Ashta 38 | P a g e
+
+--- PAGE 41 ---
+Personalized Mental Wellness Platform for College Students
+Facilities Required for Proposed Work
+1.1 Facilities Required for Proposed Work
+1.1.1 Software Requirements
+The platform requires software tools and services for frontend development, backend processing,
+database management, AI integration, machine learning, testing and deployment. The main
+requirements are described below and summarised in Table 6.1.
+1. Frontend Technologies
+React.js with Vite is used to build the interactive user interface and Tailwind CSS provides
+consistent, responsive styling.
+2. Backend Technologies
+Node.js provides the runtime and Express.js handles routing, API endpoints and request
+processing. Socket.io is used where real-time communication is required. Passwords are
+protected using bcrypt.
+3. Database and Storage
+MongoDB Atlas is the cloud database for user profiles, wellness records, conversations and
+appointments. Cloudinary manages media assets where required.
+4. AI and Machine Learning
+Ollama runs the large language model locally, and its API generates the assistant’s responses.
+Python 3.x [10] with scikit-learn and XGBoost is used for preprocessing, training, evaluating and
+running the wellness prediction model.
+5. Development, Testing and Deployment Tools
+Git and GitHub provide version control, Postman is used to test backend APIs, Visual Studio Code
+is the editor and a web browser is used to run and test the application. Vercel hosts the frontend
+and Render or Railway can host the backend. The operating system may be Windows, Linux or
+macOS.
+Table 6.1: Software and Services Used in the Project
+Annasaheb Dange College of Engineering and Technology,Ashta 39 | P a g e
+
+--- PAGE 42 ---
+Personalized Mental Wellness Platform for College Students
+Software / Service Purpose in the Project
+Operating System (Windows / Linux / Development, execution, testing and documentation.
+macOS)
+JavaScript Programming language for frontend and backend development.
+React.js with Vite Development of the frontend and interactive user interface.
+Tailwind CSS Styling and responsive layout design.
+Node.js and Express.js Backend runtime, routing, API development and request handling.
+Socket.io Real-time, bidirectional communication where required.
+MongoDB Atlas Cloud database for user profiles and application data.
+Ollama API AI-powered conversational interactions for wellness support.
+Python 3.x, scikit-learn, XGBoost Preprocessing, training, evaluation and execution of the wellness
+prediction model.
+Cloudinary Media upload, storage and management where required.
+bcrypt Password hashing to protect user credentials.
+Git, GitHub, Postman, Visual Studio Version control, API testing and code development.
+Code
+Vercel; Render or Railway Frontend hosting; backend hosting and deployment.
+1.1.2 Hardware Requirements
+1. Development Computer
+A laptop or desktop computer with a dual-core processor, at least 8 GB of RAM and 10 GB of
+free storage is suitable for basic development. A quad-core processor, 16 GB of RAM and a
+solid-state drive (SSD) are recommended when running several tools or training models. A
+dedicated GPU is generally not required for web development or for machine learning with
+scikit-learn and XGBoost.
+2. Network and Cloud Resources
+A stable internet connection is required to access MongoDB Atlas and the deployment platforms.
+Ollama must be installed on the machine that hosts the backend, with the chosen language model
+downloaded, and this machine needs sufficient RAM (and preferably a GPU) to run the model.
+Cloud usage, hosting limits and local resource usage should be monitored to avoid unexpected
+expenses and slow responses.
+Annasaheb Dange College of Engineering and Technology,Ashta 40 | P a g e
+
+--- PAGE 43 ---
+Personalized Mental Wellness Platform for College Students
+Chapter-07
+Annasaheb Dange College of Engineering and Technology,Ashta 41 | P a g e
+
+--- PAGE 44 ---
+Personalized Mental Wellness Platform for College Students
+Project Schedule
+7.1 Project Schedule
+Figure 7.1: Project Schedule of the Mental Wellness Platform
+Detailed Explanation of the Project Schedule (Planned Work)
+The schedule outlines the planned development of the Personalized Mental Wellness Platform
+for College Students, from requirement analysis to the final report. Each phase is planned to
+build on the previous one, and testing, documentation and error correction may continue
+throughout development. The actual duration and completion status of each phase should be
+updated according to the team’s progress.
+1. Requirements Analysis and Literature Review (Weeks 1–2)
+The problem is defined, objectives are framed and existing research on mental wellness chatbots,
+personalised support, NLP and counselling platforms is reviewed.
+2. System Architecture and Database Design (Weeks 3–4)
+The requirement specification, system architecture and database schema are prepared, including
+the data model for users, assessments, moods, journals, predictions, conversations and
+appointments.
+3. Frontend Development (Weeks 5–7)
+The user interface, including registration, login, profile and dashboard pages, is developed using
+React.js (Vite) and Tailwind CSS.
+4. Backend Development (Weeks 8–9)
+Server-side functionality and API endpoints are implemented using Node.js and Express.js.
+Annasaheb Dange College of Engineering and Technology,Ashta 42 | P a g e
+
+--- PAGE 45 ---
+Personalized Mental Wellness Platform for College Students
+5. Database Integration and User Data Management (Weeks 10–11)
+MongoDB Atlas is integrated and user data management and wellness assessment records are
+implemented.
+6. AI Assistant Integration (Weeks 12–13)
+The Ollama API is integrated for wellness conversations together with the Wellness Intelligence
+Engine for context selection.
+7. Machine Learning Wellness Prediction (Weeks 14–15)
+The wellness prediction module is developed using Python, scikit-learn and XGBoost and
+integrated with the backend.
+8. Counselling and Additional Features (Weeks 16–17)
+The counsellor module, appointment booking and approval, and, where required, real-time
+communication and media storage are integrated.
+9. System Integration, Testing and Review (Weeks 18–19)
+All modules are integrated and functional testing, error correction and a security and privacy
+review are carried out.
+10. Deployment, Documentation and Presentation (Weeks 20–22)
+The application is prepared for deployment and the project documentation, final report and
+presentation are completed.
+Annasaheb Dange College of Engineering and Technology,Ashta 43 | P a g e
+
+--- PAGE 46 ---
+Personalized Mental Wellness Platform for College Students
+Chapter-08
+Annasaheb Dange College of Engineering and Technology,Ashta 44 | P a g e
+
+--- PAGE 47 ---
+Personalized Mental Wellness Platform for College Students
+Implementation and Output
+1.1 Implementation and Output
+The Personalized Mental Wellness Platform is implemented as the web application Wellspace. This section
+presents the main interfaces of the application. The screenshots were captured from the application running in
+the local development environment (localhost) and show the student, counselling and administrator
+workspaces.
+1.1.1 Output 1
+The landing page introduces the platform with the message “Student life is a lot. Make room for you.” and
+offers Register and Login options, so that a new student can create an account or an existing user can sign in.
+After login, the student reaches the home dashboard, which greets the student by name and provides navigation
+to Home, Assistant, Mood, Journal and Counselling.
+Figure 8.1: Landing Page of the Wellspace Platform
+Figure 8.2: Student Home Dashboard
+The home dashboard presents the main entry points in a calm layout. The A space to talk card opens the
+Wellness Assistant, while the Mood Check-in, Journal and Wellness Overview cards lead to the tracking
+features. The A little reflection card summarises the student’s recent activity, for example the number of
+recent mood check-ins and saved reflections, without pressuring the student to keep up a streak.
+Annasaheb Dange College of Engineering and Technology,Ashta 45 | P a g e
+
+--- PAGE 48 ---
+Personalized Mental Wellness Platform for College Students
+1.1.2 Output 2
+The Wellness Assistant page lets the student hold supportive conversations. Earlier conversations are listed
+under Your chats, where a chat can be renamed or deleted and a New chat can be started. The message box
+accepts up to 1200 characters, sends on Enter and inserts a new line with Shift+Enter. A note below the box
+states that the assistant gives supportive guidance and is not a diagnosis or a replacement for professional
+counselling.
+Figure. Wellness Assistant Chat Interface
+In the example shown, the student writes that they are feeling stressed about exams. The assistant
+acknowledges the feeling, normalises it and offers practical steps such as breaking the study
+schedule into smaller, manageable chunks. This output demonstrates the AI-assisted support
+module, in which the backend validates the message, the Wellness Intelligence Engine selects
+relevant consented context and the Ollama API generates the response.
+Annasaheb Dange College of Engineering and Technology,Ashta 46 | P a g e
+
+--- PAGE 49 ---
+Personalized Mental Wellness Platform for College Students
+1.1.3 Output 3
+The wellness tracking page has three tabs: Mood, Journal and Wellbeing. The Wellbeing tab
+presents the WHO-5 wellness assessment. For each statement, such as feeling cheerful and in
+good spirits or feeling calm and relaxed, the student selects the answer that best matches the last
+two weeks. The page then shows the current score (a raw score of 15/25 is displayed as 60), an
+app support flag, and the assessment history with earlier scores and dates.
+Figure 8.4: WHO-5 Wellbeing Assessment, Score and History
+The page explains that higher scores indicate better reported well-being and that the support flags
+are application heuristics, not clinical risk levels or a diagnosis. The stored scores form part of
+the longitudinal wellness history used by the dashboard and by the Wellness Intelligence Engine.
+1.1.4 Output 4
+The Counselling page allows a student to request an appointment. The student selects a
+counsellor, a future date and time (on the hour or half hour), and the topic they would like support
+with, for example academic stress, and may add an optional note. An optional checkbox, Share
+wellness summary, lets the student allow assessments, moods, journal themes and a stress-type
+estimate to be summarised for the counsellor. The interface explains that generating the summary
+sends selected records to the AI provider and that consent must also be enabled in the profile.
+Annasaheb Dange College of Engineering and Technology,Ashta 47 | P a g e
+
+--- PAGE 50 ---
+Personalized Mental Wellness Platform for College Students
+Figure 8.5: Counselling Page – Request Appointment and My Appointments
+Figure 8.6: Appointment Request Options, Wellness Summary Consent and Appointment Status
+The My appointments panel lists each request with its status (Pending, Approved or Cancelled).
+The student can cancel a request, stop sharing the summary, review shared documents and open
+the counselling chat. The chat becomes available only after the counsellor approves the
+appointment. This workflow keeps the student in control of what information reaches the
+counsellor.
+1.1.5 Output 5
+Counsellors and administrators sign in to a separate workspace with a left navigation containing
+Dashboard, Admin and Profile. The workspace shows a protected-session indicator with the
+signed-in role and a shortcut to the administration area.
+Annasaheb Dange College of Engineering and Technology,Ashta 48 | P a g e
+
+--- PAGE 51 ---
+Personalized Mental Wellness Platform for College Students
+Figure 8.8: Administrator Dashboard
+The Administrator dashboard summarises the programme through the number of registered
+students, active counsellors, pending counsellor requests, total users and user feedback. Tabs for
+Dashboard, Counsellor requests, User management, Usage & reports and User satisfaction
+give access to the administration functions, and the Programme at a glance section reports
+recent participation. The figures displayed in the screenshot come from the test data in the
+development environment.
+1.1.6 Output 6
+Under Counsellor requests, the administrator reviews registration information provided by each
+counsellor, including qualification and specialisation, filters requests by status and chooses
+Approve or Reject. Only approved counsellors are enabled to provide support. Under User
+management, the administrator searches users by name or e-mail, filters by role and account
+status, sees registration and last sign-in dates and can deactivate an account.
+Figure 8.9: Counsellor Request Review
+Annasaheb Dange College of Engineering and Technology,Ashta 49 | P a g e
+
+--- PAGE 52 ---
+Personalized Mental Wellness Platform for College Students
+Figure 8.10: User Management
+Together, these outputs show that the platform supports the complete workflow from student
+registration and wellness tracking, through AI assistance and counselling requests, to
+administrative oversight.
+1.1.1 Evaluation Status
+The screenshots above demonstrate the implemented interfaces. Quantitative evaluation results,
+such as the performance of the wellness prediction model, response-time measurements and
+usability scores, have not been included because no measured values are available in the project
+material, and no performance values are reported without experimental evidence.
+Annasaheb Dange College of Engineering and Technology,Ashta 50 | P a g e
+
+--- PAGE 53 ---
+Personalized Mental Wellness Platform for College Students
+1.2 Test Cases
+The test cases below verify the functionality, security and reliability of the platform. The actual result and
+pass/fail status are to be recorded only after each test case is executed against the implemented system.
+Table 8.1: Test Cases for the Mental Wellness Platform
+No. Test Case Procedure Expected Result Status
+1 Application launch Start the application and open Home page loads without an unhandled [To be recorded]
+its URL. error.
+2 User registration Submit valid registration Account is created and a confirmation is [To be recorded]
+details. shown.
+3 Invalid login Enter an incorrect password. Access is denied with a safe error [To be recorded]
+message.
+4 Password security Inspect stored credentials using Passwords are hashed, never plain text [To be recorded]
+an authorised development test. or shown in the interface.
+5 Wellbeing Answer all questions and Responses are validated; score and [To be recorded]
+assessment submit. history are displayed.
+6 Incomplete Leave required questions Submission is prevented or a clear [To be recorded]
+assessment unanswered and submit. message is shown.
+7 AI assistant Send a valid wellness message. A relevant, supportive response [To be recorded]
+response consistent with safety guidelines is
+returned.
+8 Empty or invalid Submit an empty or Submission is prevented or a validation [To be recorded]
+chat input whitespace-only message. message is shown.
+9 Mood and journal Add a mood check-in and a Records are saved and appear in the [To be recorded]
+records journal entry. wellness history.
+10 Counsellor listing Open the Counselling page. Available counsellors are listed. [To be recorded]
+11 Appointment Select a counsellor, date and Request is recorded as pending and [To be recorded]
+request time, then submit. shown in My appointments.
+12 Counsellor approval Approve a pending request as Status changes to approved and the [To be recorded]
+the counsellor. counselling chat becomes available.
+13 Consent for Request an appointment with A summary is shared only when consent [To be recorded]
+summary sharing and without the summary is given.
+option.
+14 Administrator Approve and reject counsellor Only approved counsellors are enabled; [To be recorded]
+approval of requests as administrator. status is updated.
+counsellors
+15 Role-based access Log in as a student and attempt Restricted actions are denied. [To be recorded]
+control counsellor or administrator
+actions.
+16 User data privacy Log in with different accounts Users see only their own private [To be recorded]
+and try to access another user’s information.
+data.
+17 Integration and Simulate an unavailable AI A suitable message is shown; no [To be recorded]
+error handling service, invalid request or sensitive details are exposed and saved
+database failure. data is not lost.
+Annasaheb Dange College of Engineering and Technology,Ashta 51 | P a g e
+
+--- PAGE 54 ---
+Personalized Mental Wellness Platform for College Students
+1.3 Conclusion and Future Scope
+1.3.1 Conclusion
+The Personalized Mental Wellness Platform for College Students integrates wellness profiling,
+ML-based prediction and AI-assisted counselling support in a single web application. Students
+can complete a WHO-5 style assessment, record moods and journals, hold context-aware
+conversations with an AI wellness assistant, request counselling with consent-based sharing of a
+wellness summary, and review their progress. Counsellors and administrators are supported
+through approval workflows, user management, usage reports and satisfaction monitoring.
+The use of a Wellness Intelligence Engine to select relevant and recent context, and of a locally
+hosted LLM through the Ollama API to generate responses, aims to make support more
+personalised than a generic chatbot, while consent, data minimisation, hashed passwords and
+role-based access protect sensitive information. The platform is positioned as a complement to
+professional mental health care and not as a diagnostic tool.
+The report establishes the requirements, architecture, methodology, schedule and test plan, and
+presents the implemented interfaces. The actual effectiveness and reliability of the platform
+depend on the quality of AI responses, the accuracy of predictions and the outcome of testing
+and user feedback; final claims about performance should be supported by measured results.
+1.3.2 Future Scope
+1. Advanced AI Conversations: more capable language models can give more natural,
+context-aware conversations within appropriate safety boundaries.
+2. Enhanced Personalisation: the recommendation logic can be enhanced by voting
+preferences, assessment responses and feedback.
+3. Supporting different languages: add multiple languages like Marathi, Hindi and local
+languages to be able to reach more students.
+4. Expanded Wellness Resources: guided breathing exercises, meditation resources,
+relaxation techniques and educational material can be included.
+5. Enhanced Human Counselling: counsellor availability calendars, appointment
+reminders, session rescheduling and secure online counselling sessions can be introduced.
+6. Subscription and Payment Support: if paid counselling services are required, subscription
+plans and secure payment processing can be added.
+7. Mobile Application: a dedicated mobile app can make the services more convenient to access.
+Annasaheb Dange College of Engineering and Technology,Ashta 52 | P a g e
+
+--- PAGE 55 ---
+Personalized Mental Wellness Platform for College Students
+8. Privacy and Security Enhancements: stronger access controls, privacy-focused data-
+retention policies and additional security testing can be introduced.
+9. User Feedback and Evaluation: with consent and ethical safeguards, feedback from students
+and mental health professionals can guide improvement.
+10. Safety Monitoring and Support: potentially high-risk messages can be recognised and
+directed toward qualified human support or emergency resources.
+Future improvements should prioritise user safety, privacy, accessibility and professional
+oversight, and the platform should complement, rather than replace, qualified mental health
+care.
+Annasaheb Dange College of Engineering and Technology,Ashta 53 | P a g e
+
+--- PAGE 56 ---
+Personalized Mental Wellness Platform for College Students
+References
+[1] World Health Organization, “Mental health: Strengthening our response.” [Online].
+Available: https://www.who.int/news-room/fact-sheets/detail/mental-health-strengthening-
+our-response
+[2] World Health Organization, World Mental Health Report: Transforming Mental Health for
+All. Geneva, Switzerland: WHO, 2022. [Online].Available:
+https://www.who.int/publications/i/item/9789240049338
+[3] World Health Organization, Ethics and Governance of Artificial Intelligence for Health:
+WHO Guidance. Geneva, Switzerland: WHO, 2021. [Online].
+Available: https://www.who.int/publications/i/item/9789240029200
+[4] OpenAI, “GPT-4 Technical Report,” arXiv preprint arXiv:2303.08774, 2023. [Online].
+Available: https://arxiv.org/abs/2303.08774
+[5] National Institute of Standards and Technology, Artificial Intelligence Risk Management
+Framework (AI RMF 1.0), NIST AI 100-1, 2023, doi: 10.6028/NIST.AI.100-1.
+[6] OWASP Foundation, “OWASP Application Security Verification Standard (ASVS).”
+[Online].
+Available: https://owasp.org/www-project-application-security-verification-standard/
+[7] J. Brooke, “SUS: A quick and dirty usability scale,” in Usability Evaluation in Industry, P.
+W. Jordan et al., Eds. London, U.K.: Taylor & Francis, 1996, pp. 189–194.
+[8] J. Devlin, M.-W. Chang, K. Lee, and K. Toutanova, “BERT: Pre-training of deep
+bidirectional transformers for language understanding,” in Proc. NAACL-HLT,
+Minneapolis, MN, USA, 2019, pp. 4171–4186, doi: 10.18653/v1/N19-1423.
+[9] Ollama, “Ollama API Documentation.” [Online].
+Available: https://github.com/ollama/ollama/blob/main/docs/api.md
+[10] Python Software Foundation, “Python Documentation.” [Online]. Available:
+https://docs.python.org/3/
+Annasaheb Dange College of Engineering and Technology,Ashta 54 | P a g e
+
+--- PAGE 57 ---
+Personalized Mental Wellness Platform for College Students
+1.4 Author’s Biography
+Author Details
+[Photograph]
+Name: Prof. Amol S. Dange
+Designation: [Designation]
+Qualification: [Qualification]
+Experience: [Years]
+Email Address: [Email]
+[Photograph]
+Name: Ms. Shreya Dipak Patil
+URN: 23031038
+Contact Address: [Address]
+Email Address: [Email]
+Qualification Details: Pursuing B.Tech (Computer Science and
+Engineering)
+[Photograph]
+Name: Ms. Priya Bapuso Hakke
+URN: 23031035
+Contact Address: [Address]
+Email Address: [Email]
+Qualification Details: Pursuing B.Tech (Computer Science and
+Engineering)
+Annasaheb Dange College of Engineering and Technology,Ashta 55 | P a g e
+
+--- PAGE 58 ---
+Personalized Mental Wellness Platform for College Students
+sAuthor Details
+[Photograph]
+Name: Mr. Aditya Laxman Patil
+URN: 23031082
+Contact Address: [Address]
+Email Address: [Email]
+Qualification Details: Pursuing B.Tech (Computer Science and
+Engineering)
+[Photograph]
+Name: Ms. Dhanashree Vitthal Sarje
+URN: 23031071
+Contact Address: [Address]
+Email Address: [Email]
+Qualification Details: Pursuing B.Tech (Computer Science and
+Engineering)
+Annasaheb Dange College of Engineering and Technology,Ashta 56 | P a g e
+
+--- PAGE 59 ---
+Personalized Mental Wellness Platform for College Students
+1.5 Appendix
+Appendix A: Responsible Use and Limitations
+The Wellspace platform is a wellness-support tool. It does not diagnose mental health conditions,
+does not provide treatment, and is not an emergency service. AI-generated responses and ML-
+based wellness categories are supportive information only and may be incomplete or inaccurate.
+Students who are feeling overwhelmed should be referred to health professionals or emergency
+services. Wellness data is sensitive: it is gathered in small quantities, accessed via role based
+authentication, and viewable by counsellors only with the student's permission.
+Table A.1: Glossary of Terms Used in the Report
+Term Meaning
+AI Artificial Intelligence – computer systems that perform tasks normally requiring human
+intelligence.
+API Application Programming Interface – a defined way for software components to
+communicate.
+bcrypt A password-hashing algorithm used to store passwords securely.
+JWT JSON Web Token – a compact token used to authenticate requests.
+ML Machine Learning – algorithms that learn patterns from data.
+NLP Natural Language Processing – computational analysis of human language.
+RBAC Role-Based Access Control – permissions assigned according to user role.
+WHO-5 Five-item World Health Organization wellbeing questionnaire; the app displays a 0–100
+score from the raw score out of 25.
+WIE Wellness Intelligence Engine – the component that selects relevant context for the AI
+assistant.
+XGBoost A gradient-boosted decision-tree library used for classification.
+Annasaheb Dange College of Engineering and Technology,Ashta 57 | P a g e
+
+--- PAGE 60 ---
+Personalized Mental Wellness Platform for College Students
+Annasaheb Dange College of Engineering and Technology,Ashta 58 | P a g e

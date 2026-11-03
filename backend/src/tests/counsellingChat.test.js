@@ -96,6 +96,12 @@ test("unauthenticated, invalid, expired and admin sockets rejected; counsellor c
 });
 
 test("reciprocal participant isolation, tampered IDs, room joins, and metadata privacy", async () => {
+  const studentSessions = await request(app).get("/api/counselling/appointments").set(header(a)).expect(200);
+  const counsellorSessions = await request(app).get("/api/counselling/appointments").set(header(c)).expect(200);
+  assert.deepEqual(studentSessions.body.appointments.map(row => row._id), [appointment]);
+  assert.deepEqual(counsellorSessions.body.appointments.map(row => row._id), [appointment]);
+  assert.doesNotMatch(JSON.stringify(studentSessions.body), /StudentB|CounsellorB/);
+  assert.doesNotMatch(JSON.stringify(counsellorSessions.body), /StudentB|CounsellorB/);
   await request(app).patch(`/api/counselling/appointments/${appointment}/notes`).set(header(c))
     .send({ counsellorNotes: privateNote, progressUpdate: "Shared progress remains available" }).expect(200);
   await request(app).get(chatPath()).expect(401);

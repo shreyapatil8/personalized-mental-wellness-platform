@@ -7,6 +7,7 @@ export default function CounsellingSessionHistory({ appointmentId, status, role 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [refresh, setRefresh] = useState(0);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     let active = true;
@@ -25,15 +26,23 @@ export default function CounsellingSessionHistory({ appointmentId, status, role 
     return () => window.removeEventListener("focus", reload);
   }, []);
 
+  const query = search.trim().toLowerCase();
+  const filteredAppointments = appointments.filter(appointment => {
+    const person = role === "student" ? appointment.counsellor : appointment.student;
+    return (person?.name || "Counselling session").toLowerCase().includes(query);
+  });
+
   return <aside className="surface min-w-0 self-start p-4 lg:sticky lg:top-4" aria-label="Session history">
     <div className="flex flex-wrap items-center justify-between gap-2">
       <h2 className="font-semibold">Session history</h2>
       <button className="dashboard-text-link" disabled={loading} onClick={() => setRefresh(value => value + 1)} type="button">Refresh history</button>
     </div>
     <p className="mt-2 text-sm text-slate-600">Return to a saved conversation. Each appointment has its own private chat.</p>
-    {loading ? <p className="mt-4 text-sm" role="status">Loading sessions…</p> : error ? <p className="mt-4 text-sm" role="alert">{error}</p> : !appointments.length ? <p className="mt-4 text-sm text-slate-600">Approved and completed sessions will appear here.</p> :
-      <nav aria-label="Saved counselling conversations" className="mt-4 max-h-64 space-y-2 overflow-y-auto lg:max-h-[65dvh]">
-        {appointments.map(appointment => {
+    {loading ? <p className="mt-4 text-sm" role="status">Loading sessions…</p> : error ? <p className="mt-4 text-sm" role="alert">{error}</p> : !appointments.length ? <p className="mt-4 text-sm text-slate-600">Approved and completed sessions will appear here.</p> : <>
+      <label className="mt-4 block text-sm font-medium" htmlFor="session-history-search">Search by {role === "student" ? "counsellor" : "student"} name</label>
+      <input id="session-history-search" className="input mt-1" type="search" value={search} onChange={event => setSearch(event.target.value)} placeholder={`Search ${role === "student" ? "counsellor" : "student"} name`} autoComplete="off" />
+      {!filteredAppointments.length ? <p className="mt-4 text-sm text-slate-600" role="status">No saved conversations match “{search.trim()}”.</p> : <nav aria-label="Saved counselling conversations" className="mt-4 max-h-64 space-y-2 overflow-y-auto lg:max-h-[65dvh]">
+        {filteredAppointments.map(appointment => {
           const person = role === "student" ? appointment.counsellor : appointment.student;
           const selected = appointment._id === appointmentId;
           return <Link key={appointment._id} to={`/counselling/${appointment._id}/session`} aria-current={selected ? "page" : undefined}
@@ -44,6 +53,7 @@ export default function CounsellingSessionHistory({ appointmentId, status, role 
           </Link>;
         })}
       </nav>}
+    </>}
     <Link className="dashboard-text-link mt-4 inline-block" to="/counselling">Manage appointments</Link>
   </aside>;
 }
